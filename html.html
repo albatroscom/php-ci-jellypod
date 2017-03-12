@@ -1,0 +1,2700 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">	
+		<title>말랑말랑 방송국 젤리팟</title>
+		<script type="text/javascript" src="http://imgcdn.pandora.tv/jellypod/js/jquery-1.9.1.min.js?v001"></script>
+		<script type="text/javascript" src="http://imgcdn.pandora.tv/jellypod/js/common_new.js"></script>
+		<script type="text/javascript" src="http://imgcdn.pandora.tv/jellypod/js/defualt.js"></script>
+		<script type="text/javascript" src="http://imgcdn.pandora.tv/jellypod/js/common.v2.js?v002"></script>
+		<script type="text/javascript" src="http://imgcdn.pandora.tv/jellypod/js/member.js"></script>
+		<link rel="stylesheet" href="http://imgcdn.pandora.tv/jellypod/css/main.css" type="text/css"/>
+		<link rel="stylesheet" href="http://imgcdn.pandora.tv/jellypod/css/dashboard.css" type="text/css"/>
+
+				
+				<meta name="author" content="판도라TV">
+		<meta name="keywords" content="팟캐스트, 팟캐스트 순위, 팟캐스트 다운로드, 팟캐스트 원나잇스탠드, 팟캐스트 이이제이, 팟캐스트 영어공부, 팟캐스트란, 팟캐스트 호스팅, 팟캐스트 앱, 팟캐스트 어플,  오디오북, 팟캐스트 무료 호스팅 " />
+	</head>	
+	<body>
+
+				<div class="skipnav">
+			<a href="#header">상단메뉴 바로가기</a>
+			<a href="#container">본문내용 바로가기</a>
+			<a href="#footer">하단내용 바로가기</a>
+		</div>
+
+		<script type="text/javascript">
+
+		// 에러 메세지 뿌리는 함수
+		function fDisplayMsg(objID, chkID, chkValue, commentID, msg, focusOpt, color) {
+			var strMsg = false;
+			//if (chkID) $(chkID).value = chkValue;
+			if (chkID) {
+				$(chkID).val(chkValue);
+			}
+			if(objID == "chn_name") {
+				commentID = "#alertComment";
+				msg = "<span style='color:#ED1E20'>"+msg+"</span>";
+
+			} else if(objID == "chn_attach") {
+				commentID = "#alertComment";
+				msg = "<span style='color:#ED1E20'>"+msg+"</span>";
+
+			} else if(objID == "chn_itunes_1_1") {
+				commentID = "#alertComment";
+				msg = "<span style='color:#ED1E20'>"+msg+"</span>";
+
+			} else if(objID == "chn_itunes_2_1") {
+				commentID = "#alertComment";
+				msg = "<span style='color:#ED1E20'>"+msg+"</span>";
+
+			} else {
+				strMsg = true;
+				commentID = "#alertComment";
+				alert(msg);
+			}
+
+			if(strMsg == false) {
+				$(commentID).html(msg);
+				$(commentID).show();
+			}
+
+			if (focusOpt == "y") {
+				//$(objID).activate();
+				//window.scrollTo(0, 0);
+				//$(objID).scrollTo(objID);
+				//$('#alertComment').scrollTo('#chn_name');
+			}
+		}
+
+
+		function chn_checkIt() {
+
+			var obj = document.chn_frm1;
+			var ExistMsg = false;
+
+			switch (true)
+			{
+				case ($('#chn_name').val() == "") :
+					if(!ExistMsg) fDisplayMsg('chn_name', '', '', 'pwdComment', '채널명을 입력해 주세요.', 'y', '#ED1E20');
+					ExistMsg = true;
+					return false;
+				break;
+
+				case ($('#chn_attach').val() == "") :
+					if(!ExistMsg) fDisplayMsg('chn_attach', '', '', 'pwdComment', '채널 이미지를 입력해 주세요.', 'y', '#ED1E20');
+					ExistMsg = true;
+					return false;
+				break;
+
+				case ($('#chn_itunes_1_1').val() == "") :
+					if(!ExistMsg) fDisplayMsg('chn_itunes_1_1', '', '', 'pwdComment', 'itunes 카테고리 1를 입력해 주세요.', 'y', '#ED1E20');
+					ExistMsg = true;
+					return false;
+				break;
+
+				case ($('#chn_itunes_2_1').val() == "") :
+					if(!ExistMsg) fDisplayMsg('chn_itunes_2_1', '', '', 'pwdComment', 'itunes 카테고리 2를 입력해 주세요.', 'y', '#ED1E20');
+					ExistMsg = true;
+					return false;
+				break;
+
+			
+			}
+			
+			obj.action = "/?c=dashboard&m=chn_write";
+			//obj.submit();
+		}
+
+		function epi_checkIt() {
+
+			var obj = document.epi_frm;
+			var ExistMsg = false;
+
+			switch (true)
+			{
+				case ($('#epi_title').val() == "") :
+					if(!ExistMsg) fDisplayMsg('epi_title', '', '', 'pwdComment', '에피소드 제목을 입력해 주세요.', 'y', '#ED1E20');
+					ExistMsg = true;
+					return false;
+				break;
+
+				case ($('#epi_file').val() == "") :
+					if(!ExistMsg) fDisplayMsg('epi_file', '', '', 'pwdComment', '에피소드 이미지를 입력해 주세요.', 'y', '#ED1E20');
+					ExistMsg = true;
+					return false;
+				break;
+
+				case ($('#epi_writer').val() == "") :
+					if(!ExistMsg) fDisplayMsg('epi_writer', '', '', 'pwdComment', '에피소드 작성자를 입력해 주세요.', 'y', '#ED1E20');
+					ExistMsg = true;
+					return false;
+				break;
+
+				case ($('#epi_content').val() == "") :
+					if(!ExistMsg) fDisplayMsg('epi_content', '', '', 'pwdComment', '에피소드 내용을 입력해 주세요.', 'y', '#ED1E20');
+					ExistMsg = true;
+					return false;
+				break;
+
+				case ($('#epi_tag').val() == "") :
+					if(!ExistMsg) fDisplayMsg('epi_tag', '', '', 'pwdComment', '에피소드 태그를 입력해 주세요.', 'y', '#ED1E20');
+					ExistMsg = true;
+					return false;
+				break;
+
+			
+			}
+
+			obj.action = "/?c=dashboard&m=epi_write";
+			obj.submit();
+		}
+
+		function getChnCate2() {
+
+			var cate1 = $("#chn_itunes_1_1").val();
+
+			$.ajax({
+				url:"/?c=dashboard&m=getChannelCategory",
+				data:'jsonData={"cate1":"'+cate1+'"}',
+				type:"POST",
+				dataType:"json",
+				success:function(obj) {
+					if (obj.result)
+					{
+						alert(obj.result);
+					}
+				}, 
+				error:function(jqXHR, textStatus, errorThrown)
+				{
+					alert("error");
+				}
+			});
+
+		}
+
+
+		function get_chn_info(chidx) {
+
+			//var hei = $('body').height();
+			$("#channel_title_txt").html("신규 채널 <span>생성</span>");
+			var hei = $(document).height();
+			//alert(hei);
+
+			if (chidx == 0)
+			{
+				$(".pro_img").css("background-image", "url('')");
+				$(".pro_img").html("");
+				$("#chn_frm1").each(function() {
+					this.reset();
+				});
+				$('#ChannelPopup').show().css('height',hei);
+
+				var y = (($(window).height() - 780) / 2) + $(window).scrollTop() + 100;
+				$("#ChannelPopup > .popup11").css({"top":y+"px"});
+
+				$('#clear_btn').show();
+				$('#del_btn').hide();
+
+				$("#chn_homepage").val("http://");
+
+			} else {
+
+				$.ajax({
+					url:"/?c=dashboard&m=getChannelInfo",
+					data:'jsonData={"chnidx":"'+chidx+'"}',
+					type:"POST",
+					dataType:"json",
+					success:function(obj) {
+						if (obj.result == "OK")
+						{
+						//	console.log(obj);
+							$("#channel_title_txt").html("채널 <span>편집</span>");
+							$('#ChannelPopup').show().css('height',hei);
+
+							var y = (($(window).height() - 780) / 2) + $(window).scrollTop() + 100;
+							$("#ChannelPopup > .popup11").css({"top":y+"px"});
+
+							$("#chn_name").val(obj.list[0].name);
+							$("#chn_subtitle").val(obj.list[0].subtitle);
+							
+							if (obj.list[0].logo != "")
+							{
+								//$(".pro_img").css("background-image", "url("+obj.list[0].logo+")");
+								$(".pro_img").html("<img src='" + obj.list[0].logo + "' id='prev_pro_img' style='width:88px; height:88px'>");
+							}
+
+							try {
+								var preview = document.getElementById("pro_img"); //div id   
+								var prevImg = document.getElementById("prev_pro_img"); //이전에 미리보기가 있다면 삭제
+								if (prevImg) {
+								//	preview.removeChild(prevImg);
+								}
+							}
+							catch (e) {}
+
+							$("#chn_summary").val(obj.list[0].summary);
+							$("#chn_itunes_1_1").val(obj.list[0].itunes_cate1);							
+							$("#chn_itunes_2_1").val(obj.list[0].itunes_cate3);
+							
+							//	$("#chn_itunes_1_2").val(obj.list[0].itunes_cate2);
+							//	$("#chn_itunes_2_2").val(obj.list[0].itunes_cate4);
+							
+							//setTimeout(function(){
+								getCategory(obj.list[0].itunes_cate1, '', 'chn_itunes_1_2');	
+								getCategory(obj.list[0].itunes_cate3, '', 'chn_itunes_2_2');
+							//}, 1000);
+
+							setTimeout(function(){
+								$("#chn_itunes_1_2").val(obj.list[0].itunes_cate2);
+								$("#chn_itunes_2_2").val(obj.list[0].itunes_cate4);
+							}, 1000);
+
+							setTimeout(function(){
+								$("#chn_itunes_1_2 option:eq(" + obj.list[0].itunes_cate2 + ")").attr("selected", "selected");
+								$("#chn_itunes_2_2 option:eq(" + obj.list[0].itunes_cate4 + ")").attr("selected", "selected");
+							}, 1500);
+
+							$("#chn_category").val(obj.list[0].category_name);
+							$("#chn_keyword").val(obj.list[0].chn_keyword);
+							$("#chn_writer").val(obj.list[0].writer);
+							$("#chn_copyright").val(obj.list[0].copyright);
+
+							$("#chn_homepage").val(obj.list[0].homepage);
+
+							$("#chn_copyright").val(obj.list[0].copyright);
+
+							$('input:radio[name=chn_letter]:input[value='+obj.list[0].letter_yn+']').attr("checked", true);
+							$('input:radio[name=chn_open]:input[value='+obj.list[0].open_yn+']').attr("checked", true);
+							$('input:radio[name=content_rating]:input[value='+obj.list[0].rating_code+']').attr("checked", true);
+
+							$("#chn_mode").val("modify");
+
+							$("#chn_idx").val(obj.list[0].idx);
+
+							$('#clear_btn').hide();
+							$('#del_btn').show();
+						}
+					}, 
+					error:function(jqXHR, textStatus, errorThrown)
+					{
+						alert("error");
+					}
+				});
+			}
+
+		}
+
+
+		function CheckItLogin() {
+
+			var regMail =/^[\._a-zA-Z0-9-]+@[\._a-zA-Z0-9-]+\.[a-zA-Z]+$/;
+
+			var pwdErr = false;
+			var pwdVal = $('#pop_password2').val().replace(/^\s+/, '').replace(/\s+$/, '');
+
+			var pop_email2 = $('#pop_email2').val().replace(/^\s+/, '').replace(/\s+$/, '');
+
+			if (pop_email2 == "") {
+				fDisplayMsg('pop_email2', '#checkEmail', '', 'EmailComment', '이메일을 입력해 주세요.', '', '#ED1E20')
+				return false;
+			}
+
+			if (!regMail.test(pop_email2))
+			{
+				fDisplayMsg('pop_email2', '#checkEmail', '', 'EmailComment', '이메일 형식이 잘못되었습니다.', '', '#ED1E20')
+				return false;
+			}
+
+			if (pwdVal == "")
+			{
+				fDisplayMsg('pop_password2', '', '', 'EmailComment', '비밀번호를 입력해 주십시요.', '', '#ED1E20');
+				return false;
+			}
+
+			$.ajax({
+				type : "POST",
+				url : "/?c=index&m=member_login",
+				timeout:300000, //300sec ??
+				//data : sendData,
+				data : 'jsonData={"pop_email2":"'+$("#pop_email2").val()+'", "pop_password2":"'+$("#pop_password2").val()+'"}',
+				dataType : "json",
+				success : function(obj){
+					//commandResult(obj, cmd, sub_cmd);
+
+					if (obj.result == "OK") {
+						alert(obj.mem_name + "님 로그인 되었습니다.");
+						location.href = '/';
+					} else if (obj.result == "EMPTY") {
+						alert("아이디가 등록되어 있지 않거나, 아이디 또는 비밀번호를 잘못 입력 하였습니다");
+						return false;
+					}
+
+				},
+				error : function(x,e,o)
+				{
+				
+					if(e=='parsererror')
+					{
+						alert('Error.nParsing JSON Request failed. '+x.responseText);
+					}
+					else if(e=='timeout')
+					{
+						alert('Request Time out.');
+					}
+					else if(x.status != "undefined" && x.status != "null")
+					{
+						if(x.status==0)
+						{
+							alert('Ajax error You are offline!! Please Check Your Network.');
+						}
+						else if(x.status==404)
+						{
+							alert('Requested URL not found.');
+						}
+						else if(x.status==500)
+						{
+							alert('Internel Server Error.');
+						}
+					}
+					else 
+					{
+						alert('Unknow Error.n'+x.responseText);
+					}
+
+					//CloseProcessMask();
+				}
+
+			});
+
+			//document.memFrm2.action = "/?c=index&m=member_login";
+			//document.memFrm2.submit();
+		}
+
+
+		function set_episode_info(chidx, epiWriter) {
+		
+			var hei = window.document.height;
+			$('.pop_box_da2').show().css('height',hei);	
+			$("#epi_chn_idx").val(chidx);
+
+			$("#epi_category").val($("#chn_cate_name_"+chidx).val());
+			$("#epi_chn_name").val($("#channel_name_"+chidx).val());
+
+			var y = (($(window).height() - 719) / 2) + $(window).scrollTop() + 50;				
+			$(".pop_box_da2 > .popup11").css({"top":y+"px"});
+
+			$("#epi_writer").val(epiWriter);
+		}
+
+		
+		function dashLinkChk(val) {
+
+			if (val == "allow") {
+				location.href = "/?c=dashboard";
+			} else {
+				alert("제작자 회원만 이용가능한 서비스입니다.");
+				return false;
+			}
+		}
+
+
+		function setChnOpen(chnidx) {
+
+			var chnOnOffval;
+			if ($("input:checkbox[name=chnOnoff_"+chnidx+"]").is(":checked") == true) {
+				chnOnOffval = "Y";
+			} else {
+				chnOnOffval = "N";
+			}
+
+			$.ajax({
+				url:"/?c=dashboard&m=set_chn_open",
+				data:'jsonData={"chnidx":"'+chnidx+'", "onoff":"'+chnOnOffval+'"}',
+				type:"POST",
+				dataType:"json",
+				success:function(obj) {
+					if (obj.result == "Y")
+					{
+						alert("채널이 공개로 설정되었습니다.");
+					} else {
+						alert("채널이 비공개로 설정되었습니다.");
+					}
+				}, 
+				error:function(jqXHR, textStatus, errorThrown)
+				{
+					alert("채널 공개 설정에 실패하였습니다. \n다시 시도해 주세요.");
+				}
+			});
+
+		}
+
+		function set_userid(chnidx, userid){
+			if(!chnidx)
+			{
+				alert('채널번호가 없습니다');
+				return;
+			}
+
+			if(!userid)
+			{
+				alert('사용자정보가 없습니다');
+				return;
+			}
+
+			$.ajax({
+				url:"/?c=dashboard&m=set_userid",
+				data:'jsonData={"chnidx":"'+chnidx+'", "userid":"'+userid+'"}',
+				type:"POST",
+				dataType:"json",
+				success:function(obj) {
+					if (obj.result == "OK")
+					{
+						alert("채널 권한이 이전 되었습니다.");
+						location.reload();
+					}
+					else if(obj.result == "FAILED")
+					{
+						alert("채널 권한 이전 오류");
+					}
+				}, 
+				error:function(jqXHR, textStatus, errorThrown)
+				{
+					alert("채널 공개 설정에 실패하였습니다. \n다시 시도해 주세요.");
+				}
+			});
+		}
+
+
+		function set_hosting_manager(chnidx, userid){
+			if(!chnidx)
+			{
+				alert('채널번호가 없습니다');
+				return;
+			}
+
+			if(!userid)
+			{
+				alert('사용자정보가 없습니다');
+				return;
+			}
+
+			$.ajax({
+				url:"/?c=dashboard&m=set_hosting_manager",
+				data:'jsonData={"chnidx":"'+chnidx+'", "userid":"'+userid+'"}',
+				type:"POST",
+				dataType:"json",
+				success:function(obj) {
+					if (obj.result == "OK")
+					{
+						alert("무료 호스팅 신청이 완료되었습니다.");
+						location.reload();
+					}
+					else if(obj.result == "FAILED")
+					{
+						alert("무료 호스팅 신청 오류");
+					}
+				}, 
+				error:function(jqXHR, textStatus, errorThrown)
+				{
+					alert("무료 호스팅 신청에 실패하였습니다. \n다시 시도해 주세요.");
+				}
+			});
+		}
+
+		</script>
+
+		<!-- wrapper start -->
+		<div id="wrapper">
+
+			<!-- header start -->
+						<div id="header">
+				<div class="header_con">
+					<h1><a href="/?c=main"><img src="http://imgcdn.pandora.tv/jellypod/images/main/logo.png" alt="jelly pod"/></a></h1>
+					<ul>
+						<!-- // 검색-->
+						<li class="sear">
+							<div>
+								<form name="search_frm" method="post" action="/?c=search">
+								<label for="search" class="s_label" title="검색"><img src="http://imgcdn.pandora.tv/jellypod/images/main/search_off.png" alt="검색"/></label>
+								<input type="text" name="search_title" id="search_title"/>
+								</form>
+							</div>	
+						</li>
+						<!-- // 검색-->
+
+						
+						<!-- 로그인 -->
+						<li class='log plpil'> 						<!--li--> 							<a href="javascript:void(0);" class="login" title="로그인">로그인
+																								<!-- img src="https://graph.facebook.com//picture" width="30" height="30" alt=""/ -->
+																									<img src="http://imgcdn.pandora.tv/jellypod/images/sub/profile.gif" width="30" height="30" alt="로그인"/>
+																						</a>
+														<ul style="display:none;">
+								<li><a href="/?c=mypage&m=maker_member">내정보</a></li>
+								<li><a href="/?c=main&m=member_logout">로그아웃</a></li>
+							</ul>
+													</li>
+						<!-- // 로그인 -->
+
+												<!-- li style="width:25px;"></li -->
+						
+						<!-- 메뉴 -->
+						<li class="b_none">
+							<a href="javascript:void(0);" class="menu" title="메뉴">메뉴<!-- img src="http://imgcdn.pandora.tv/jellypod/images/main/menu_off.png" alt="메뉴"/ --></a>	
+							<ul style="display:none;">
+								<li><a href="/?c=intro">젤리팟소개</a></li>
+								<li><a href="/?c=hosting">젤리팟호스팅</a></li>
+								<li><a href="/?c=chart">젤리차트</a></li>
+								<li class="blur"><a href="/?c=board">고객센터</a></li>
+							</ul>
+						</li>
+						<!-- //메뉴 -->
+
+						<!-- dashboard -->
+						<li class="dash on">
+												<img src="http://imgcdn.pandora.tv/jellypod/images/main/dashboard.png" alt="dashboard" onclick="dashLinkChk('allow')" style="cursor:pointer;" />
+						</li>
+						<!-- //dashboard -->
+
+					</ul>				
+				</div>
+			</div>
+			
+			<script type="text/javascript">
+			function loginPopcall() {
+				$('.pop_box2').show().css('height', $(document).height());
+				var y = (($(window).height() - 780) / 2) + $(window).scrollTop() + 200;
+				$(".pop_box2 > .popup2").css({"top":y+"px"});
+			}
+			function joinPopcall() {
+				$('.pop_box4').show().css('height', $(document).height());
+				var y = (($(window).height() - 780) / 2) + $(window).scrollTop() + 200;
+				$(".pop_box4 > .popup1").css({"top":y+"px"});
+			}
+			</script>			<!-- header end -->
+			
+			<!-- container start -->
+			<div id="container">				
+				<div class="title"><h2><img src="http://imgcdn.pandora.tv/jellypod/images/title/dashboard_title1.gif" alt="회원가입 | 제작자"/></h2></div>
+				
+				<div class="location">
+					<div class="thumb_box">
+						<div class="thmb">
+							<div class="th_img_area">
+								<p class="th_img"><img alt="img" src="" onerror="this.src='http://imgcdn.pandora.tv/jellypod/images/sub/profile.gif'" style="height:97px;width:97px;"></p>
+								<a href="./?c=mypage&m=maker_member" class="th_btn active"><img width="97" height="97" alt="img" src="http://imgcdn.pandora.tv/jellypod/images/sub/blind_img.gif"></a>
+							</div>
+							<dl>
+								<dt class="th_ttl"><span>건기의물웅덩이</span>님, 이용해 주셔서 감사합니다.</dt>
+								<dd class="btn_info"><a href="./?c=mypage&m=maker_member"><img alt="내정보수정" src="http://imgcdn.pandora.tv/jellypod/images/sub/btn_info.gif"></a></dd>
+								<dd class="th_txt">
+																마지막 방문일 : 2013.09.02 23:06																</dd>
+							</dl>
+						</div>
+						<div class="count_area">
+							<p class="count"><span class="number">1</span><span class="ttl">총 운영채널</span></p>
+							<p class="count"><span class="number">0<span class="ttl">총 에피소드</span></p>
+							<!-- 참고: 마지막영역 백그라운 없음 클래스명:bg0  -->
+							<p class="count bg0"><span class="number">0<span class="ttl">총 이용량 (MB)</span></p>
+						</div>	
+					</div>
+				</div>
+
+				<!-- content start -->
+				<div id="content" class="bdb0">
+					
+					<!-- 채널리스트 -->
+					1378132854<br><br><br>
+					<div class="channel_list">
+						<h3 class="mgb20"><img src="http://imgcdn.pandora.tv/jellypod/images/sub/dashboard_title2.gif" alt="채널리스트"/></h3>
+						<a href="javascript:get_chn_info(0);" class="btn_newch pbtn" ><img src="http://imgcdn.pandora.tv/jellypod/images/sub/btn_newch.gif" alt="신규채널생성" /></a>
+
+						<!-- 채널 등록 전 -->
+												<!-- //채널 등록 전 -->
+
+						
+						<!-- 채널 등록 후 -->
+						
+														1378132854<br><br><br>
+							<div class="ch_box">
+								<div class="thmb">
+									<div class="th_img_area">
+										<p class="th_img"><img alt="img" src="http://imguser.pandora.tv/pandora/_jellypod_img/ch_img/7/7/771/771_c_1378129567.png" onerror="this.src='http://imgcdn.pandora.tv/jellypod/images/main/thmb_basic.gif'" style="width:195px; height:195px;"></p>
+										<a href="/?c=channel&chnidx=771" class="th_btn active"><img width="195" height="195" alt="img" src="http://imgcdn.pandora.tv/jellypod/images/sub/blind_img.gif"></a>
+									</div>
+									<p class="icon_new"><p class='icon_new'><img src='http://imgcdn.pandora.tv/jellypod/images/sub/icon_new.png' alt="NEW"/></p></p>
+									<dl>
+										<dd class="th_genre"><a href="/?c=chart&ttype=categ&categ=">방송</a></dd>
+										<input type="hidden" name="chn_cate_name_771" id="chn_cate_name_771" value="방송">
+										<dt class="th_ttl"><input type="hidden" name="channel_name_771" id="channel_name_771" value="테스트삼백"><a href="/?c=channel&chnidx=771">테스트삼백</a></dt>
+										<dd class="th_link">&nbsp;</dd>
+										<dd class="th_txt">
+											<span class="point-star">
+																							<img src="http://imgcdn.pandora.tv/jellypod/images/sub/icon_star.png" alt="별점">
+																							<img src="http://imgcdn.pandora.tv/jellypod/images/sub/icon_star.png" alt="별점">
+																							<img src="http://imgcdn.pandora.tv/jellypod/images/sub/icon_star.png" alt="별점">
+																							<img src="http://imgcdn.pandora.tv/jellypod/images/sub/icon_star.png" alt="별점">
+																							<img src="http://imgcdn.pandora.tv/jellypod/images/sub/icon_star.png" alt="별점">
+																						</span>&nbsp;&nbsp;<b>0</b>명
+										</dd>
+										<dd class="icon_feed"><img alt="Feed URL" src="http://imgcdn.pandora.tv/jellypod/images/sub/icon_feed_url.gif">
+																				<a href="http://jellypod.com/feed.php?chnidx=771" target="_blank()">http://jellypod.com/feed.php?chnidx=771</a>
+										<!-- a href="http://www.jellypod.com/771" target="_blank" title="www.jellypod.com/771">www.jellypod.com/771</a -->
+																				<!-- a href="http://goo.gl/XLBoms" target="_blank()">http://goo.gl/XLBoms</a --></dd>
+									</dl>
+									<ul>
+										<!-- li>
+											<span class="subj">젤리팟 순위</span>
+											<strong class="laking">11,5</strong>
+											<span class="up">21</span>
+										</li -->
+										<li>
+											<span class="subj">채널 구독</span>
+											<strong class="subs">0</strong>
+											<span class="up"></span>
+										</li>
+										<li>
+											<span class="subj">채널 공유</span>
+											<strong class="share">0</strong>
+											<span class="up"></span>
+										</li>
+										<li>
+											<span class="subj">에피소드 좋아요</span>
+											<strong class="likes">0</strong>
+											<span class="up"></span>
+										</li>
+									</ul>
+								</div>
+								<div class="btn">
+																		<span class="checkbox">
+										<label>
+											<span class="checkin">
+												<input type="checkbox" name="chnOnoff_771" value="Y" onclick="setChnOpen(771)" >
+											</span>채널 공개
+										</label>
+									</span>
+									<a href="javascript:get_chn_info('771')" class="th_btn" id="pop_btn0"><img alt="채널 편집" src="http://imgcdn.pandora.tv/jellypod/images/sub/btn_chedit.gif"></a>
+									<a href="javascript:set_episode_info('771', '테스트')" class="th_btn pbtn" id="pop_btn2"><img alt="에피소드 등록" src="http://imgcdn.pandora.tv/jellypod/images/sub/btn_episode.gif"></a>
+																	</div>
+								<div class="cont">
+																		<a href="/?c=dashboard&m=epi_tab_view&chnidx=771">에피소드 관리 (0)</a>
+																		<a href="/?c=dashboard&m=letter_tab_view&chnidx=771">사연 관리 (0)</a>
+									<a href="/?c=dashboard&m=promotion_tab_view&chnidx=771" >프로모션 신청</a>
+									<a class="last" href="/?c=dashboard&m=statistic_tab_view&chnidx=771">통계</a>
+								</div>
+							</div>
+
+																			<!-- //채널 등록 후 -->
+
+						<!-- 페이징 -->
+						<div class="paging pdtb25">
+							&nbsp;<strong>1</strong>						</div>
+						<!-- //페이징 -->						
+
+					</div>					<!-- //채널리스트 -->
+
+					<!-- 사연, 공지사항 -->
+										<div class="ds_section">
+						
+						<!-- 사연 유 -->
+						<script>
+							var hei=$(document).height();
+							$(document).ready(function(){
+								var hei=$('body').height();
+								$('#pop_btn_letter_btn').click(function(){
+									getUserLetterList(1);
+								});
+								$('#pop_btn_notice').click(function(){
+									getUserNoticeList(1);
+								});
+								$('#pop_btn_notice_0').click(function(){
+									getUserNoticeList(1, $("#board_id_0").val());
+								});
+
+								$('#pop_btn_notice_1').click(function(){
+									getUserNoticeList(1, $("#board_id_1").val());
+								});
+
+								$('#pop_btn_notice_2').click(function(){
+									getUserNoticeList(1, $("#board_id_2").val());
+								});
+
+							});
+							function listClose(listName){
+								$('#'+listName).html('');
+								$('#'+listName).hide().css('height',0);
+							}
+							function getUserNoticeList(page, b_idx){
+								$.ajax({
+									type : "get",
+									url : "/?c=dashboard&m=getUserNoticeListByAjax",
+									timeout:300000, //30sec ??
+									data : 'page='+page+'&b_idx='+b_idx,
+									//dataType : "json",
+									success : function(html_data){
+										if( html_data ) {
+											$('#popup_notice_pop').html(html_data);
+											var hei=$(document).height();
+
+											$('#popup_notice_pop').show().css('height',hei);
+
+											var y = (($(window).height() - 780)) + $(window).scrollTop();
+											$("#popup_notice_pop > .popup11").css({"top":y+"px"});
+										}
+									},
+									error : function(x,e,o)
+									{
+										alert('error');
+									}
+								});
+							}
+							function getUserLetterList(page){
+								$.ajax({
+									type : "get",
+									url : "/?c=dashboard&m=getUserLetterListByAjax",
+									timeout:300000, //30sec ??
+									data : 'page='+page,
+									//dataType : "json",
+									success : function(html_data){
+										if( html_data ) {
+											$('#popup_letter_pop').html(html_data);
+											var hei=$(document).height();
+
+											$('#popup_letter_pop').show().css('height',hei);
+
+											var y = (($(window).height() - 780)) + $(window).scrollTop();
+											$("#popup_letter_pop > .popup11").css({"top":y+"px"});
+										}
+									},
+									error : function(x,e,o)
+									{
+										alert('error');
+									}
+								});
+							}
+							function listPagingView() {
+								var pagingHTML 	= "";
+								var page 			= parseInt($("#page").val());
+								var totalCount		= parseInt($("#totalCount").val());
+								var pageBlock		= parseInt($("#pageBlock").val());
+								var pagingId		= $("#pagingId").val();
+								var baseUrl		= $("#baseUrl").val();
+								var startIndex		= page;
+								var navigatorNum   = 5;
+								var firstPageNum	= 1;
+								var lastPageNum	= Math.floor((totalCount-1)/pageBlock) + 1;
+								var previewPageNum = page == 1 ? 1 : page-1;
+								var nextPageNum	= page == lastPageNum ? lastPageNum : page+1;
+								var indexNum		= startIndex <= navigatorNum  ? 0 : parseInt((startIndex-1)/navigatorNum) * navigatorNum;
+								if (totalCount > 1) {
+									 if (startIndex > 1) {
+										 pagingHTML += "<a class='btn_first disabled' href='javascript:"+baseUrl+"("+firstPageNum+");'><em><<</em></a> ";
+										 pagingHTML += "<a class='btn_prev disabled' href='javascript:"+baseUrl+"("+previewPageNum+");'><em><</em></a> ";
+									 }
+									 for (var i=1; i<=navigatorNum; i++) {
+										 var pageNum = i + indexNum;
+										 if (pageNum == startIndex) 
+											 pagingHTML += "<a class='selected' href='javascript:"+baseUrl+"("+pageNum+");'>"+pageNum+"</a> ";
+										 else 
+											 pagingHTML += "<a href='javascript:"+baseUrl+"("+pageNum+");'>"+pageNum+"</a>  ";
+										 if (pageNum==lastPageNum)
+											 break;
+									 }
+									 if (startIndex < lastPageNum) {
+										 pagingHTML += "<a class='btn_next' href='javascript:"+baseUrl+"("+nextPageNum+");'><em>></em></a> ";
+										 pagingHTML += "<a class='btn_end' href='javascript:"+baseUrl+"("+lastPageNum+");'><em>>></em></a>";
+									 }
+									
+								}
+								//alert(pagingId);
+								$("#"+pagingId).html(pagingHTML);
+							 }
+						</script>
+						
+						<!-- 사연 무 -->
+						<div class="new_story" style="display:">
+							<h4>최근 받은 사연</h4>
+							<p class="new_story_txt">최근 받은 사연이 없습니다</p>
+						</div>
+						<!-- //사연 무 -->
+
+						
+						<div class="ds_notice">
+							<h4>공지사항</h4>
+							<ul>
+														</ul>
+							<!-- a class="ds_more pbtn" id="pop_btn_notice" href="#">더보기 +</a -->
+							<a class="ds_more pbtn" href="javascript:getUserNoticeList(1);">더보기 +</a>
+						</div>
+						<div class="ds_btns">
+							<a class="pdr10" href="/?c=faq"><img src="http://imgcdn.pandora.tv/jellypod/images/sub/btn_faq.gif" alt="자주하는 질문 FAQ"/></a><a href="/?c=inquiry"><img src="http://imgcdn.pandora.tv/jellypod/images/sub/btn_inquiry.gif" alt="1:1 문의하기"/></a>
+						</div>
+
+					</div>
+					<div class="pop_box_da4" id="popup_letter_pop"></div>
+					<div class="pop_box_da5" id="popup_notice_pop"></div>					<!-- //사연, 공지사항 -->
+
+				</div>
+				<!-- content end -->			
+				
+			</div>
+			<!-- container end -->
+			
+			<!-- footer start -->
+						<div id="footer">
+				<ul>
+					<li class="bg_none"><a href="/?c=board">공지사항</a></li>
+					<li><a href="/?c=agreement&m=service">서비스 이용약관</a></li>
+					<li><a href="/?c=agreement&m=privacy">개인정보 취급방침</a></li>
+					<li><a href="/?c=inquiry">제휴문의</a></li>
+					<li class="copy">Copyright ⓒ PANDORA.TV All rights reserved</li>
+									 
+				</ul>
+			</div>			<!-- footer end -->
+
+			<!-- player start -->	
+						<!-- div class="player">
+				<div>
+					<img src="http://imgcdn.pandora.tv/jellypod/images/main/player.gif" alt="player"/>
+				</div>
+			</div -->			<!-- player end -->
+
+			<!-- 신규채널생성 팝업 start -->
+						<div class="pop_box_da1" id="ChannelPopup">
+				<div class="pop_opac">&nbsp;</div>
+				<div class="popup11" style="top:200px;">
+					<div class="head">
+						<h1 id="channel_title_txt">신규 채널 <span>생성</span></h1>
+						<input type="image" src="http://imgcdn.pandora.tv/jellypod/images/sub/pop_close.gif" alt="닫기" class="close"/>
+					</div>
+
+					<form name="chn_frm1" id="chn_frm1" method="post" enctype="multipart/form-data">
+					<input type="hidden" name="chn_idx" id="chn_idx" >
+					<input type="hidden" name="chn_mode" id="chn_mode" value="">
+					<input type="Hidden" name="reURL" value="c=dashboard">
+					<div style="overflow-y:auto;height:480px;" class="channel_make">
+						<dl>
+							<dt class="pdt20"><label for="chn_name">채널 명</label>&nbsp;<img src="http://imgcdn.pandora.tv/jellypod/images/sub/icon_star.gif" alt="img"></dt>
+							<dd class="pdt20">
+								<input type="text" name="chn_name" id="chn_name" class="text" />
+							</dd>
+							<dt><label for="subtitle">채널 부제목</label></dt>
+							<dd>
+								<input type="text" name="chn_subtitle" id="chn_subtitle" class="text" onKeyup="chn_subtitlefocus();" onMouseDown="chn_subtitlefocus();"/>
+							</dd>
+							<dt><label for="chimg">채널 이미지&nbsp;<img src="http://imgcdn.pandora.tv/jellypod/images/sub/icon_star.gif" alt="img"></label></dt>
+							<dd>
+								<div class="pro_img" id="pro_img"><!-- <img src="http://imgcdn.pandora.tv/jellypod/images/sub/pro_img.jpg" alt="이미지"/> --></div>
+								<p>
+									<label class="hid" for="register">검색</label>
+									<input type="file" style="display:none" class="text1" id="chn_attach" name="chn_attach" onChange="previewImage(this, 'pro_img');" >
+									<input type="text" class="text1" id="temp_chn_attach" name="temp_chn_attach" readOnly>
+									<img alt="찾아보기" src="http://imgcdn.pandora.tv/jellypod/images/sub/btn_find.gif" style="cursor:pointer" onclick="imgAttach();">
+									<span>* 권장사이즈 600x600 px <br>* 젤리팟 채널에 노출되는 대표이미지 입니다.</span>
+								</p>
+							</dd>
+							<dt><label for="chtxt">채널 설명</label></dt>
+							<dd>
+								<textarea class="chn_summary" id="chn_summary" name="chn_summary" cols="60" rows="8" ></textarea>
+							</dd>
+							<dt><label for="chn_itunes_1_1">iTunes 카테고리1</label>&nbsp;<img src="http://imgcdn.pandora.tv/jellypod/images/sub/icon_star.gif" alt="img"></dt>
+							<dd>
+								<select name="chn_itunes_1_1" id="chn_itunes_1_1" onChange="getCategory(this.value, '', 'chn_itunes_1_2');">								
+								</select>
+								<select name="chn_itunes_1_2" id="chn_itunes_1_2">
+								</select>
+							</dd>
+							<dt><label for="chn_itunes_2_1">iTunes 카테고리2</label>&nbsp;<!-- <img src="http://imgcdn.pandora.tv/jellypod/images/sub/icon_star.gif" alt="img"> --></dt>
+							<dd>
+								<select name="chn_itunes_2_1" id="chn_itunes_2_1" onChange="getCategory(this.value, '', 'chn_itunes_2_2');">									
+								</select>
+								<select name="chn_itunes_2_2" id="chn_itunes_2_2">
+								</select>
+							</dd>
+							<dt><label for="chn_category">젤리팟 카테고리</label>&nbsp;<img src="http://imgcdn.pandora.tv/jellypod/images/sub/icon_star.gif" alt="img"></dt>
+							<dd>
+								<input type="text" name="chn_category" id="chn_category" class="text  maker" value="" readonly/>
+								<input type="Hidden" name="chn_category_code" class="text  maker" value=""/>
+								<span class="cate_txt">* iTunes카테고리에 따라 젤리팟 카테고리가 자동 설정됩니다.</span>
+							</dd>
+							<dt><label for="chn_keyword">키워드</label></dt>
+							<dd>
+								<input type="text" name="chn_keyword" id="chn_keyword" class="text" />
+								<span class="cate_txt">(,)콤마로 구분하여 입력 /  추천태그 : 여행, 사진, 음악, 책, 미술</span>
+							</dd>
+							<dt><label for="chn_writer">저자명</label></dt>
+							<dd>
+								<input type="text" name="chn_writer" id="chn_writer" class="text" />
+								<span class="cate_txt" style="padding-bottom:10px;">iTunes 등록 시 필요한 팟캐스트 저자명을 입력해 주세요<br /> ( 제작자와 저자가 동일한 경우 제작자 이름을 입력해주세요 )</span>
+							</dd>
+							<dt><label for="chn_copyright">저작권자</label></dt>
+							<dd>
+								<input type="text" name="chn_copyright" id="chn_copyright" class="text" />
+								<span class="cate_txt">생성할 채널의 저작권자 이름을 입력해주세요</span>
+							</dd>
+							<dt><label for="chn_homepage">홈페이지</label></dt>
+							<dd>
+								<input type="text" name="chn_homepage" id="chn_homepage" class="text" />
+							</dd>
+							<dt><label for="receive">사연수신</label></dt>
+							<dd>
+								<input type="radio" id="chn_letter1" name="chn_letter" value="Y" checked>
+								<label for="chn_letter1">설정</label>
+								<input type="radio" id="chn_letter2" name="chn_letter" value="N">
+								<label for="chn_letter2">비설정</label>
+							</dd>
+							<dt><label for="confirm2">채널공개 여부</label></dt>
+							<dd>
+								<input type="radio" id="chn_open1" name="chn_open" value="Y" checked>
+								<label for="chn_open1">공개</label>
+								<input type="radio" id="chn_open2" name="chn_open" value="N">
+								<label for="chn_open2">비공개</label>
+							</dd>
+							<!-- 참고: 마지막줄 패딩 영역 있음 클래스명:pdb20 -->
+							<dt class="pdb20"><label for="content">컨텐츠 종류</label></dt>
+							<dd class="pdb20">
+								<input type="radio" id="content_ratingid1" name="content_rating" value="10007" checked>
+								<label for="content_ratingid1">전체</label>
+								<input type="radio" id="content_ratingid2" name="content_rating" value="10008">
+								<label for="content_ratingid2">15세 이상</label>
+								<input type="radio" id="content_ratingid3" name="content_rating" value="10009">
+								<label for="content_ratingid3">19세 이상</label>
+							</dd>
+							<dt class="pdb20"><label for="content"></label></dt>
+							<dd class="pdb20"><p class="emergan" id="alertComment" style="display:none; text-align:center;"></p></dd>
+						</dl>
+					</div>
+					<div class="under_line"></div>
+					<div class="btn_area">
+						<img id="clear_btn" name="clear_btn" src="http://imgcdn.pandora.tv/jellypod/images/sub/btn_initialization.gif" style="margin-right:440px; cursor:pointer; display:none;" onClick="clearFunc()" alt="초기화">
+						<img id="del_btn" name="del_btn" style="cursor:pointer; margin-right:440px; display:none;" alt="삭제" src="http://imgcdn.pandora.tv/jellypod/images/sub/btn_pop_delete.gif" onclick="set_del()" >
+						<img alt="저장" style="cursor:pointer" onClick="chn_insertIt()" src="http://imgcdn.pandora.tv/jellypod/images/sub/btn_save.gif" id="chn_insert_btn">
+						<img src="http://imgcdn.pandora.tv/jellypod/images/sub/btn_cancle.gif" alt="취소" style="cursor:pointer" onclick="closeFunc()">
+					</div>
+					</form>
+				</div>
+			</div>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+	window.onload = function () {
+		getCategory('', '', '');
+	};
+	$(window).load(function() {
+	//	getCategory('', '', '');
+/*
+		if( $("#chn_mode").val() == "modify" ) {		
+			setTimeout(function(){
+				getCategory($("#chn_itunes_1_1").val(), '', 'chn_itunes_1_2');				
+			}, 1000);
+
+			setTimeout(function(){
+				getCategory($("#chn_itunes_2_1").val(), '', 'chn_itunes_2_2');
+			}, 2000);
+		}
+*/
+	});
+
+	function imgAttach() {
+		$("#chn_attach").click();
+	}
+
+	function set_del(){
+		if( $("#chn_idx").val() ) {
+			if( confirm("채널삭제시 포함되어있는 모든 에피소드\n및 정보가 삭제되며, 다시 복구하실 수 없습니다.\n정말로 채널을 삭제하시겠습니까?") ) {
+				var chnidx = $("#chn_idx").val();
+				var sUrl = "./?c=dashboard&m=set_delete_channel";
+				$.ajax({
+					type : 'post',
+					url : sUrl, 
+					dataType : "json",
+					data : {"chnidx":chnidx},
+					success : function(res) {
+						console.log(res);
+						if( res.msg == "ok" ){					
+							alert("채널이 삭제되었습니다.");
+							closeFunc();
+							location.href = "./?c=dashboard";
+						}else
+							alert(res.msg);
+					},
+					error : function (e) {
+						
+					}
+				});
+			} // confirm
+		}
+	}
+
+	function chn_subtitlefocus() {
+	//	console.log("adlkfjslkf = " + $("input[name='chn_subtitle']").val());
+		if( $("input[name='chn_subtitle']").val() == "" ) {
+			$("input[name='chn_subtitle']").val($("input[name='chn_name']").val());
+		}
+	}
+
+	function chn_insertIt() {
+
+		if( $("#chn_name").val() == "" ){
+			alert("채널 명을 입력해주세요.");
+			$("#chn_name").focus();
+			return false;
+		}
+
+		if( $("#chn_summary").val() == "" ){
+			alert("채널 설명을 입력해주세요.");
+			$("#chn_summary").focus();
+			return false;
+		}
+
+		if( $("#chn_itunes_1_1").val() == "" ){
+			alert('iTunes 카테고리1을 선택해주세요.');
+			$("#chn_itunes_1_1").focus();
+			return false;
+		}
+/*
+		if( $("#chn_itunes_2_1").val() == "" ){
+			alert('iTunes 카테고리2을 선택해주세요.');
+			$("#chn_itunes_2_1").focus();
+			return false;
+		}
+*/
+		var strAction = "";
+		if( $("#chn_mode").val() == "modify" ) {
+			strAction = "./?c=dashboard&m=chn_modify";
+		}
+		else{
+			strAction = "./?c=dashboard&m=chn_write";
+		}
+		$("#chn_insert_btn").hide();
+
+		document.chn_frm1.action = strAction;
+		document.chn_frm1.submit();
+	}
+
+	function closeFunc() {
+		clearFunc();
+		$("#ChannelPopup").css("display", "none");
+	}
+
+	function clearFunc() {
+		document.chn_frm1.chn_name.value = '';
+
+		$("#chn_subtitle").val('');
+		$("#chn_summary").val('');
+		$("#chn_itunes_1_1").val('');
+		$("#chn_itunes_1_2").val('');
+		$("#chn_itunes_2_1").val('');
+		$("#chn_itunes_2_2").val('');
+
+		$("#chn_category").val('');
+		$("#chn_keyword").val('');
+		$("#chn_writer").val('');
+		$("#chn_copyright").val('');
+
+		$("#chn_homepage").val('http://');
+		$("#chn_copyright").val('');
+
+		document.chn_frm1.chn_letter[0].checked = true;
+		document.chn_frm1.chn_open[0].checked = true;
+		document.chn_frm1.content_rating[0].checked = true;
+
+		$(".pro_img").style = "";
+	}
+	
+	var publicArr = new Array();
+	function getCategory(depth1, depth2, targetV){
+		if( depth1 ){
+			if( targetV == "chn_itunes_1_2" )
+			{
+				var code1 = $("#chn_itunes_1_1 option:selected").attr("cd");
+				var selected_value = $("#chn_itunes_1_1 option:selected").attr("value");
+			}
+			else
+			{
+				var code1 = $("#chn_itunes_2_1 option:selected").attr("cd");
+				var selected_value = $("#chn_itunes_2_1 option:selected").attr("value");
+			}
+		}
+		var sUrl = "./?c=dashboard&m=getCategListF";
+		$.ajax({
+			type : 'post',
+			url : sUrl, 
+			dataType : "json",
+			data : {"depth1":depth1, "depth2":depth2, "code1":code1},
+			success : function(res) {
+				if( res ){					
+					if( !depth1 ) {
+						//console.log(res);
+						publicArr = res;
+						var opHTML = "<option value=''>1차 카테고리</option>";
+						for( var i = 0; i < res.length; i++ ) {
+							opHTML += "<option value='" + res[i].tc_idx + "' cd='" + res[i].tc_code_1  + "'>" + res[i].tc_value + "</option>";
+						}
+						$("#chn_itunes_1_1").html(opHTML);
+						$("#chn_itunes_2_1").html(opHTML);
+					}
+
+					if( depth1 ) {	// 2 Depth
+					//	console.log(res);
+						var opHTML = "<option value=''>2차 카테고리</option>";
+						for( var i = 0; i < res.length; i++ ) {
+							if(res[i].tc_idx != selected_value)
+								opHTML += "<option value='" + res[i].tc_idx + "'>" + res[i].tc_value + "</option>";
+						}
+						$("#" + targetV).html(opHTML);
+
+						for( var i = 0; i < publicArr.length; i++ ) {
+							if( targetV == "chn_itunes_1_2" && publicArr[i].tc_idx == depth1 ) {
+								$("input[name='chn_category_code']").val(publicArr[i].cate_idx);
+								$("input[name='chn_category']").val(publicArr[i].cate_name);
+							}
+						}
+					}
+				}
+			},
+			error : function (e) {
+				
+			}
+		});	
+	}
+
+
+	function previewImage(targetObj, previewId) {
+		
+		$("#temp_chn_attach").val(targetObj.value);
+		
+        var preview = document.getElementById(previewId); //div id   
+        var ua = window.navigator.userAgent;
+
+        //if (ua.indexOf("MSIE") > -1) {//ie일때
+		if (ua.indexOf("MSIE") > 324324) {//ie일때
+
+            targetObj.select();
+
+            try {
+                var src = document.selection.createRange().text; // get file full path 
+                var ie_preview_error = document.getElementById("ie_preview_error_" + previewId);
+
+                if (ie_preview_error) {
+                    preview.removeChild(ie_preview_error); //error가 있으면 delete
+                }
+
+                var img = document.getElementById(previewId); //이미지가 뿌려질 곳 
+
+                img.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='"
+                        + src + "', sizingMethod='scale')"; //이미지 로딩, sizingMethod는 div에 맞춰서 사이즈를 자동조절 하는 역할
+            } catch (e) {
+                if (!document.getElementById("ie_preview_error_" + previewId)) {
+                    var info = document.createElement("<p>");
+                    info.id = "ie_preview_error_" + previewId;
+                    info.innerHTML = "a";
+                    preview.insertBefore(info, null);
+                }
+            }
+        } else { //ie가 아닐때
+            var files = targetObj.files;
+			
+            for ( var i = 0; i < files.length; i++) {
+
+			    var file = files[i];
+
+                var imageType = /image.*/; //이미지 파일일경우만.. 뿌려준다.
+                if (!file.type.match(imageType))
+                    continue;
+
+                var prevImg = document.getElementById("prev_" + previewId); //이전에 미리보기가 있다면 삭제
+                if (prevImg) {
+                    preview.removeChild(prevImg);
+                }
+
+                var img = document.createElement("img"); //크롬은 div에 이미지가 뿌려지지 않는다. 그래서 자식Element를 만든다.
+                img.id = "prev_" + previewId;
+                img.classList.add("obj");
+                img.file = file;
+                img.style.width = '88px'; //기본설정된 div의 안에 뿌려지는 효과를 주기 위해서 div크기와 같은 크기를 지정해준다.
+                img.style.height = '88px';
+                
+                preview.appendChild(img);
+
+                if (window.FileReader) { // FireFox, Chrome, Opera 확인.
+                    var reader = new FileReader();
+                    reader.onloadend = (function(aImg) {
+                        return function(e) {
+                            aImg.src = e.target.result;
+                        };
+                    })(img);
+                    reader.readAsDataURL(file);
+                } else { // safari is not supported FileReader
+                    //alert('not supported FileReader');
+                    if (!document.getElementById("sfr_preview_error_"
+                            + previewId)) {
+                        var info = document.createElement("p");
+                        info.id = "sfr_preview_error_" + previewId;
+                        info.innerHTML = "not supported FileReader";
+                        preview.insertBefore(info, null);
+                    }
+                }
+            }
+        }
+    }
+//-->
+</SCRIPT>			<!-- 신규채널생성 팝업  end -->
+
+			<!-- 에피소드 등록 팝업 start -->
+			<script type="text/javascript" src="/js/datepicker.js">{"describedby":"fd-dp-aria-describedby"}</script>
+<link href="/css/datepicker.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+// <![CDATA[ 
+// Utility function - not needed by the datepicker script but used by a few of the demos below   
+function pad(value, length) { 
+        length = length || 2; 
+        return "0000".substr(0,length - Math.min(String(value).length, length)) + value; 
+};
+// ]]>
+</script>
+<script type="text/javascript" src="http://imgcdn.pandora.tv/jellypod/js/upload.ko.js"></script>
+
+<script type="text/javascript">
+
+var uploadTemplete = {
+	uploadSet : "#uploadSet",
+	uploadAd : "#add",
+	TotalLength : 0,
+	//uploadUrl : "/json/v003/GPFileUpLoad2.dll/upload",
+	uploadUrl : "http://up1.pandora.tv/jellypod/GJellyPodUpLoad.dll/upload",
+	FileName : [],
+	initTry : 0,
+	Cnt : 0,
+	totUploadSize : [],
+	currUploadSize : [],
+	interval : [],
+	intervalSec : [],
+	totSize : [],
+	initChkSec : 4,
+	sizeChkTry : 0,
+	isComplate : false,
+	arrayCnt : [],
+	arraySvr : [],
+	arrFailState : [],
+	login_userid : null,
+	login_usernick : null,
+	login_age : null,
+	login_upstatus : null,
+	login_rname_chk : null,
+	adult_chk : null,
+	isForeign : null,
+	login_adult : null,
+
+	Set : function () {
+		var Obj = this;
+
+		this.login_userid = decodeURIComponent(cookieSet.GetCookie('glb_mem[userid]'));
+		this.login_usernick = decodeURIComponent(cookieSet.GetCookie('glb_mem[nickname]'));
+		this.login_age = decodeURIComponent(cookieSet.GetCookie('glb_mem[age]'));
+		this.login_upstatus = decodeURIComponent(cookieSet.GetCookie('glb_mem[upStatus]'));
+		this.login_rname_chk = cookieSet.GetCookie('rname_check');
+		this.adult_chk = decodeURIComponent(cookieSet.GetCookie('adult_check'));
+		this.isForeign = (decodeURIComponent(cookieSet.GetCookie('ipCountry')) != 'KR' && decodeURIComponent(cookieSet.GetCookie('browserLang')) != 'ko') ? 1 : 0;
+		this.login_adult = ((this.isForeign == 0 && this.adult_chk != null && this.adult_chk != 'y') || (this.isForeign && this.login_age < 18)) ? 0 : 1;
+
+		// 업로드
+		jQuery('#btnServerEncode').click(function() {
+			Obj.uploadExecute();
+		});
+
+		// 취소
+		jQuery('#cancel').click(function() {
+			
+		});
+
+		this.HtmlTemplete();
+	},
+
+	ProgressTemplete : function (order) {
+		/*
+		var uploadHtml = '<div class="bx_top bx_top_c1">';
+			uploadHtml += '	<h3 class="gftit radius">[ 업로드 중 ]</h3>';
+			uploadHtml += '	<div class="gfbox">';
+			uploadHtml += '		<p class="gf_c" style="width:100%;left:-100%">';
+			uploadHtml += '			<span class="gf_txt">0%</span>	';
+			uploadHtml += '		</p>';
+			uploadHtml += '		<p class="gf_f"></p>';
+			uploadHtml += '	</div>';
+			uploadHtml += '	<a class="btn_x radius" id="file_cancel_1'+'">취소</a>';
+			uploadHtml += '</div>';
+		*/
+		
+		/*
+		var uploadHtml = '<dt class="pdt20" ><label for="epi_file">에피소드 업로드</label>&nbsp;';
+			uploadHtml += '<img src="http://imgcdn.pandora.tv/jellypod/images/sub/icon_star.gif" alt="img"></dt>';
+			uploadHtml += '<dd class="pdt20">';
+			uploadHtml += '<input type="file" name="vodfile" id="f_vodfile_1" class="text" />';
+			uploadHtml += '<div class="cate_txt"><span id="upFilePreview"></span></div>';
+			uploadHtml += '</dd>';
+		*/
+		var uploadHtml = '<dt class="pdt20"><label for="epi_file">[ 업로드 중 ]</label>&nbsp;';
+			uploadHtml += '<img src="http://imgcdn.pandora.tv/jellypod/images/sub/icon_star.gif" alt="img"></dt>';
+			uploadHtml += '<dd class="pdt20">';
+			uploadHtml += '		<p class="gf_c" style="width:100%;left:-100%">';
+			uploadHtml += '			<span class="gf_txt">0%</span>';
+			uploadHtml += '		</p>';
+			uploadHtml += '		<div class="cate_txt"><span id="upFilePreview"></span></div>';
+			uploadHtml += '</dd>';
+
+
+		return uploadHtml;
+	},
+
+	ProgressSuccess : function () {
+
+		/*
+		var uploadHtml = '<div class="bx_top bx_top_c4">';
+			uploadHtml += '	<h3 class="gftit radius">[ 업로드 완료 ]</h3>';
+			uploadHtml += '	<div class="gfbox2">아래 확인 버튼을 클릭 해주세요.</div>';
+			uploadHtml += '</div>';
+		*/
+
+		var uploadHtml = '<dt class="pdt20"><label for="epi_file">[ 업로드 완료 ]</label>&nbsp;';
+			uploadHtml += '<img src="http://imgcdn.pandora.tv/jellypod/images/sub/icon_star.gif" alt="img"></dt>';
+			uploadHtml += '<dd class="pdt20">';
+			uploadHtml += '		<p class="gf_f">업로드가 완료되었습니다.</p>';
+			uploadHtml += '		<div class="cate_txt"><span id="upFilePreview"></span></div>';
+			uploadHtml += '</dd>';
+
+
+		return uploadHtml;
+	},
+
+	ProgressFail : function (result, order) {
+
+		/*
+		var uploadHtml = '<div class="bx_top bx_top_c2">';
+			uploadHtml += '	<h3 class="gftit radius">[ 업로드 실퍠 ]</h3>';
+			uploadHtml += '	<div class="gfbox2">';
+			uploadHtml += result;
+			uploadHtml += '	</div>';
+			uploadHtml += '	<a class="btn_r radius" id="file_reset_1'+'">확인</a>';
+			uploadHtml += '</div>';
+		*/
+
+		var uploadHtml = '<dt class="pdt20"><label for="epi_file">[ 업로드 실패 ]</label>&nbsp;';
+			uploadHtml += '<img src="http://imgcdn.pandora.tv/jellypod/images/sub/icon_star.gif" alt="img"></dt>';
+			uploadHtml += '<dd class="pdt20">';
+			uploadHtml += result;
+			uploadHtml += '		<div class="cate_txt"><span id="upFilePreview"></span></div>';
+			uploadHtml += '</dd>';
+
+		return uploadHtml;
+	},
+
+	UploadBtn : function () {
+		var uploadHtml = '<a id="add" name="add" class="btm_btn_plus">업로드 추가</a>';
+
+		return uploadHtml;
+	},
+
+	HtmlTemplete : function () {
+		this.TotalLength += 1;
+		this.arrayCnt.push(this.TotalLength);
+
+		this.totUploadSize[this.TotalLength] = 0;
+		this.currUploadSize[this.TotalLength] = 0;
+		this.intervalSec[this.TotalLength] = 0;
+		this.interval[this.TotalLength] = 0;
+		this.totSize[this.TotalLength] = 0;
+
+		var sc_my_category = "";
+
+		var sc_category_one = "";
+
+		var	uploadHtml = '';
+
+		this.buttonControl();
+		jQuery(this.uploadSet).before(uploadHtml);
+		this.executeEvent(this.TotalLength);
+	},
+
+	// Event 등록
+	executeEvent : function(order) {
+		var Obj = this;
+		this.clickExecute();
+
+		// 파일 선택시
+		//jQuery('#f_vodfile_1').change(function() {
+		jQuery('#f_vodfile_1').change(function() {
+			//var fmfile = jQuery('#f_vodfile_1').val();
+			var fmfile = jQuery('#f_vodfile_1').val();
+			if (fmfile == '') {
+				return false;
+			}
+
+			var oinfo = fmfile.substr(fmfile.lastIndexOf('\\')+1, fmfile.length);
+			var title = oinfo.substr(0, oinfo.lastIndexOf('.'));
+			var body = oinfo.substr(0, oinfo.lastIndexOf('.'));
+			var tag = oinfo.substr(0, oinfo.lastIndexOf('.')).split(' ');
+
+			var tag_value = '';
+			for (var i=0; i<tag.length; i++) {
+				if (i <= 2) {
+					tag_value += tag[i]+',';
+				} else {
+					break;
+				}
+			}
+			tag_value = tag_value.substr(0, tag_value.length-1);
+			jQuery('#upFilePreview').val(oinfo);
+//			jQuery('#f_title_1').val(title);
+//			jQuery('#f_body_1').val(body);
+//			jQuery('#i_tag_1').val(tag_value);
+		
+			jQuery('#up_status').val('Y');
+			// 파일 업로드 진행
+			Obj.fileUploadControl(order);
+		});
+
+		// 채널 카테고리 선택시
+		jQuery('#f_categ_id_1').change(function() {
+			var upper_class = jQuery('#f_categ_id_1'+' option:selected').attr('upper_class');
+			jQuery('#f_upper_class_code_1').val(upper_class).attr("selected", "selected");
+		});
+
+		// 1차 카테고리 선택시
+		jQuery('#f_upper_class_code_1').change(function() {
+			var upper_class_val = jQuery('#f_upper_class_code_1').val();
+
+			if(jQuery('#f_upper_class_code_1').val() == "08") {
+				jQuery('#upload_1').find('#sbsMeg1').hide();
+				jQuery('#upload_1').find('#sbsMeg2').html(jQuery('#sbsMeg').html()).show();
+			} else {
+				jQuery('#upload_1').find('#sbsMeg2').hide();
+				jQuery('#upload_1').find('#sbsMeg1').show();
+			}
+
+			jQuery.ajax({
+				type : 'POST',
+				data : {"mode":"upperclass","no":order,"f_upper_class_code":upper_class_val,"language":"ko"},
+				url : "/channel/upload_multi_ajax.ko.php",
+				success : function (res) {
+					if(res.length > 100) jQuery('#span_f_class_code_1').show();
+					else jQuery('#span_f_class_code_1').hide();
+
+					jQuery('#f_class_code_' + order).remove();
+					jQuery('#f_upper_class_code_1').after(res);
+				},
+				404 : function () {
+					alert('비정상적인 접근 입니다.');
+				},
+				error : function () {
+					alert('ment regist error');
+				}
+			});
+		});
+
+		// 삭제
+		jQuery('#del_1').click(function() {
+			Obj.delExecute(order);
+		});
+
+		// 다시시작
+		jQuery('#file_reset_1').click(function() {
+			Obj.fileUploadCancel(order);
+		});
+
+	},
+
+	fileUploadControl : function(order) {
+		var Obj = this;
+		//var fileFullName = jQuery('#f_vodfile_1').val();
+		var fileFullName = jQuery('#f_vodfile_1').val();
+		this.FileName[order] = this.getUpFileName(fileFullName);
+
+		jQuery('#file_find_1').hide();
+		jQuery('#progress_1').show().html(this.ProgressTemplete(order));
+
+		jQuery('#fmfile_2').children('#filename').val(this.FileName[order]);
+		jQuery('#fmfile_1').children('#filename').val(this.FileName[order]);
+		//jQuery('#f_filename_1').val(this.FileName[order]);
+		jQuery('#epi_file').val(this.FileName[order]);
+
+		jQuery('#fmfile_2').attr("action", this.uploadUrl);
+		jQuery('#fmfile_2').attr("target", "h_frm_"+order);
+
+		jQuery('#fmfile_2').submit();
+		this.initChk(0, order);
+
+		// 업로드 취소
+		jQuery('#file_cancel_1').click(function() {
+			Obj.fileUploadCancel(order);
+		});
+		jQuery('#cancel').click(function() {
+			Obj.fileUploadCancel(order);
+		});
+		jQuery('#close').click(function() {
+			Obj.fileUploadCancel(order);
+		});
+	},
+
+	fileUploadCancel : function(order) {
+		jQuery('#progress_1').hide()
+		jQuery('#file_find_1').show();
+		jQuery('#fmfile_2')[0].reset();
+		jQuery('#fmfile_1')[0].reset();
+		jQuery('#h_frm_1').attr("src", "about:blank");
+	},
+
+	initChk : function(state, order) {
+		var Obj = this;
+		this.initTry++;
+
+
+		  jQuery.ajax({
+			url: "http://up1.pandora.tv/jellypod/GPFileSize.dll?filename=" + this.FileName[order],
+			dataType: 'jsonp',
+			jsonpCallback: "callback",
+			success: function(data) {
+				try {
+					console.log('성공 - ', data);
+				} catch (e) {}
+
+				//var json = eval("(" + data + ")");
+				var uploadSize = parseInt(data.Size, 10);
+				Obj.currUploadSize[order] = uploadSize - Obj.totUploadSize[order];
+				Obj.totUploadSize[order] = uploadSize;
+
+				switch(state) {
+					case 0 :
+						Obj.totSize[order] = parseInt(data.Total, 10);
+						if(Obj.totSize[order] <= 0) {
+							if(Obj.initTry <= 5) setTimeout(function() {Obj.initChk(0, order);}, 1000);
+							else setTimeout(function() {Obj.initChk(1, order);}, Obj.initChkSec*1000);
+						} else {
+							setTimeout(function() {Obj.initChk(1, order);}, Obj.initChkSec*1000);
+						}
+						break;
+					case 1 :
+						Obj.ready(order);
+						break;
+				}
+
+
+			},
+			error: function(xhr) {
+			  console.log('실패 - ', xhr);
+			}
+		  });
+
+
+		/*
+		jQuery.ajax({
+			type : 'GET',
+			//url : "/json/v003/GPFileSize.dll?filename=" + this.FileName[order],
+			url : "http://up1.pandora.tv/jellypod/GPFileSize.dll?filename=" + this.FileName[order],
+			success : function (data) {
+				var json = eval("(" + data + ")");
+				var uploadSize = parseInt(json['Size'], 10);
+				Obj.currUploadSize[order] = uploadSize - Obj.totUploadSize[order];
+				Obj.totUploadSize[order] = uploadSize;
+
+				switch(state) {
+					case 0 :
+						Obj.totSize[order] = parseInt(json['Total'], 10);
+						if(Obj.totSize[order] <= 0) {
+							if(Obj.initTry <= 5) setTimeout(function() {Obj.initChk(0, order);}, 1000);
+							else setTimeout(function() {Obj.initChk(1, order);}, Obj.initChkSec*1000);
+						} else {
+							setTimeout(function() {Obj.initChk(1, order);}, Obj.initChkSec*1000);
+						}
+						break;
+					case 1 :
+						Obj.ready(order);
+						break;
+				}
+			},
+			404 : function () {
+				alert('비정상적인 접근 입니다.');
+			},
+			error : function () {
+				alert('error');
+			}
+		});
+		*/
+
+
+	},
+
+	ready : function(order) {
+		var Obj = this;
+		var uploadRate = Math.floor(this.totUploadSize[order] * 100 / this.totSize[order]);
+		var remainSec = (this.totSize[order]-this.totUploadSize[order]) * this.initChkSec / this.currUploadSize[order];
+		switch(true) {
+			case (remainSec < 60)  : this.intervalSec[order] = 2; break;
+			case (remainSec < 300) : this.intervalSec[order] = 3; break;
+			case (remainSec < 600)  : this.intervalSec[order] = 4; break;
+			default : this.intervalSec[order] = 5;
+		}
+
+		var viewSec = (isNaN(Math.ceil(remainSec)) || parseInt(Math.ceil(remainSec),10)<0)? "" : Math.ceil(remainSec);
+		jQuery('#progress_1').find('.gf_c').css({"left":"-"+(100-uploadRate)+"%"});
+		jQuery('#progress_1').find('.gf_txt').html(uploadRate+"%");
+
+		this.interval[order] = setInterval(function() {Obj.chkSize(order)}, Obj.intervalSec[order]*1000);
+	},
+
+	chkSize : function(order) {
+		var Obj = this;
+
+		/*
+		jQuery.ajax({
+			type : 'GET',
+			//url : "/json/v003/GPFileSize.dll?filename=" + this.FileName[order],
+			url : "http://up1.pandora.tv/jellypod/GPFileSize.dll?filename=" + this.FileName[order],
+			success : function (data) {
+				var json = eval("(" + data + ")");
+				Obj.setSize(parseInt(json['Size'], 10), order);
+			},
+			404 : function () {
+				alert('비정상적인 접근 입니다.');
+			},
+			error : function () {
+				alert('error');
+			}
+		});
+		*/
+
+
+		$.ajax({
+			url: "http://up1.pandora.tv/jellypod/GPFileSize.dll?filename=" + this.FileName[order],
+			dataType: 'jsonp',
+			jsonpCallback: "callback",
+			success: function(data) {
+				try { 
+					console.log('성공 - ', data);
+				} catch(e) {}
+
+			//var json = eval("(" + data + ")");
+			//Obj.setSize(parseInt(json['Size'], 10), order);
+			Obj.setSize(parseInt(data.Size, 10), order);
+
+		},
+			error: function(xhr) {
+			console.log('실패 - ', xhr);
+		}
+		});
+
+	},
+
+	setSize : function(uploadSize, order) {
+		this.currUploadSize[order] = uploadSize - this.totUploadSize[order];
+		this.totUploadSize[order] = uploadSize;
+		
+		if(this.currUploadSize[order] <= 0 || this.totUploadSize[order] <= 0) {
+			this.sizeChkTry++;
+			if(this.sizeChkTry > 5) {
+				return false;
+			}
+		}
+		this.sizeChkTry = 0;	// 연속해서 5번 이상 이상현상이 있을때만...
+
+		var uploadRate = Math.floor(this.totUploadSize[order] * 100 / this.totSize[order]);
+		var remainSec = Math.ceil((this.totSize[order]-this.totUploadSize[order]) * this.intervalSec[order] / this.currUploadSize[order]);
+
+		if(uploadRate < 100) {
+			var viewSec = (isNaN(remainSec) || parseInt(remainSec,10)<0)? "" : remainSec;
+
+			jQuery('#progress_1').find('.gf_c').css({"left":"-"+(100-uploadRate)+"%"});
+			jQuery('#progress_1').find('.gf_txt').html(uploadRate+"%");
+		} else {	// upload complated
+			clearInterval(this.interval[order]);
+			jQuery('#progress_1').html(this.ProgressSuccess());
+			jQuery('#up_status').val('N');
+
+		}
+	},
+
+	getUpFileName : function(org_file) {	// make filename to save in server
+		var s = org_file.lastIndexOf("\\");
+		var m = org_file.lastIndexOf(".");
+		var e = org_file.length;
+		var extname = org_file.substring(m+1,e);
+
+		// file format
+		var extArr = new Array("mov","wmv","avi","k3g","asf","mpeg","mpg","mpe","mkv","3gp","ogm","rm","skm","rmvb","m4v","dat","flv","mp4","divx","lmp4","mqv","tp","ts","ps","mp3","mp4");
+
+		var extCnt = 0;
+		for(i=0;i<extArr.length;i++) if(extname.toLowerCase()==extArr[i].toString()) extCnt++;
+		if(extCnt==0) {
+			this.viewMsg(rsLangPage["noExtFile"]);
+			return false;
+		}
+
+		var unixTime = new Date().getTime().toString();
+
+		var key = chInfoJson['ch_userid'] + "_";
+
+		// random for 12
+		var letters = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']; 
+		var upper = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']; 
+		var numbers = ['1','2','3','4','5','6','7','8','9','10']; 
+
+
+		var rnd = numbers.concat(letters).concat(upper);
+		var rndText = "";
+		for(i=0;i<12;i++){
+			var idx = Math.floor(Math.random()*61);
+			rndText =  rndText + rnd[idx].toString();
+		}
+
+		return (key + unixTime + "_" + rndText + "." + extname);
+	},
+
+	buttonControl : function() {
+		jQuery('.btm_btn_add').html('');
+	},
+
+	delExecute : function(order) {
+		var divNodes = jQuery('.uld_bx2');
+
+		this.arrayCnt = jQuery.grep(this.arrayCnt, function(value) { return value != order; });
+
+		jQuery('#del_' + order).unbind();
+		jQuery('#cls_' + order).unbind();
+		jQuery('#opn_' + order).unbind();
+		jQuery('#option_' + order).unbind();
+		jQuery('#find_' + order).unbind();
+		jQuery('#up_' + order).unbind();
+		jQuery('#down_' + order).unbind();
+		jQuery('#upload_' + order).remove();
+
+		jQuery('.btm_btn_add').last().html(this.UploadBtn());
+		this.clickExecute();
+
+		if (divNodes.length <= 1) {
+			// 마지막 업로드 삭제시 초기화 후 생성
+			this.HtmlTemplete();
+		}
+	},
+
+	bodyExecute : function(event) {
+		this.titleExecute(event);
+	},
+
+	tagExecute : function(order) {
+		this.titleExecute(order);
+	},
+
+	clickExecute : function() {
+		var Obj = this;
+		jQuery(this.uploadAd).unbind('click');
+		jQuery(this.uploadAd).click(function() {
+			/*if(Obj.arrayCnt.length == 10) {
+				alert('동시업로드는 10개를 초과하여 더이상 추가 할 수 없습니다.');
+				return false;
+			}*/
+
+			Obj.HtmlTemplete();
+		});
+	},
+
+	iTagKeyDownExecute : function(event, order) {
+		var tagText = jQuery('#i_tag_1').val();
+		if (event.keyCode==186 || event.keyCode==16 || event.keyCode==17 || event.keyCode==229 || event.keyCode==13 || event.keyCode==188 || event.keyCode==59 || event.keyCode==32 || event.keyCode==8 || (event.keyCode>=48 && event.keyCode<=90)) {
+		} else {
+			alert(rsLangPage['tagNotAlert']);
+			jQuery('#i_tag_1').val(tagText);
+			return false;
+		}
+
+		if (this.specialCheck(tagText) == true) {
+			alert(rsLangPage['tagNotAlert']);
+			jQuery('#i_tag_1').val('');
+			return false;
+		}
+
+		var tag = tagText.split(',');
+		var tagLength = tag.length;
+		var tagSemiLengthTotal = 0;
+		for (var i=0; i<tag.length;i++){
+			var tagSemiLength = tag[i].split(';').length;
+			tagSemiLengthTotal = tagSemiLengthTotal + tagSemiLength;
+		}
+		totalLength = (tagLength + tagSemiLengthTotal) - tagLength;
+
+		if (totalLength > 10) {
+			alert(rsLangPage['tagMaxAlert']);
+			jQuery('#i_tag_1').val(tagText.substring(0, tagText.length-1));
+			return false;
+		}
+	},
+
+	iTagBlurExecute : function(event, order) {
+		var tagText = jQuery('#i_tag_1').val();
+
+		if (this.specialCheck(tagText) == true) {
+			alert(rsLangPage['tagNotAlert']);
+			jQuery('#i_tag_1').val('');
+			return false;
+		}
+
+		var tag = tagText.split(',');
+		var tagLength = tag.length;
+		var tagSemiLengthTotal = 0;
+		for (var i=0; i<tag.length;i++){
+			var tagSemiLength = tag[i].split(';').length;
+			tagSemiLengthTotal = tagSemiLengthTotal + tagSemiLength;
+		}
+		totalLength = (tagLength + tagSemiLengthTotal) - tagLength;
+
+		if (totalLength > 10) {
+			alert(rsLangPage['tagMaxAlert']);
+			var tag_Text = '';
+			var k = 0;
+			for (var i=0; i<tag.length ; i++) {
+				var tagCheck = tag[i].split(';');
+				for (var j=0 ; j<tagCheck.length ; j++) {
+					if (k > 9) {
+						break;
+					}
+					var seperateText = tagText.substring(0, tagText.indexOf(tagCheck[j])+tagCheck[j].length+1);
+					tag_Text = tag_Text + tagCheck[j] + seperateText.substr(seperateText.length-1, 1);
+					k++;
+				}
+			}
+			jQuery('#i_tag_1').val(tag_Text.substring(0, tag_Text.length-1));
+			return false;
+		}
+	},
+
+	specialCheck : function(str){
+		var chk = false;
+		var val = str;
+		var Re = /[~!@\#$%<>?^&*\()\=\-+_.:|\/\"\'\\\[\]\{\}]/gi;
+
+		if(Re.test(val)){
+			chk = true;
+			str = val.replace(Re,'');
+		}
+		return chk;
+	},
+
+	upExecute : function(event) {
+		var divNodes = jQuery('.uld_bx2');
+		var id = event.target.id;
+		var number = id.split('_')[1];
+		var prevId = jQuery("div[id$='upload_"+number+"']").prev().attr('id');
+
+		if (jQuery('#progress_'+number).find('h3').html() == "[ 업로드 중 ]") {
+			alert('파일 업로드 중에는 이동할 수 없습니다.');
+			return false;
+		}
+
+		if (divNodes.length <= 1 || prevId == undefined) {
+			alert('더 이상 위로 이동할 수 없습니다.');
+			return false;
+		}
+
+		var Div = jQuery("div[id$='upload_"+number+"']");
+		var prevId = Div.prev().attr('id');
+
+		var oldDiv = Div.clone(true);
+		Div.remove();
+		jQuery("#"+prevId).before(oldDiv);
+
+		jQuery('.btm_btn_add').html('');
+		jQuery('.btm_btn_add').last().html(this.UploadBtn());
+		this.clickExecute();
+	},
+
+	downExecute : function(event) {
+		var divNodes = jQuery('.uld_bx2');
+		var id = event.target.id;
+		var number = id.split('_')[1];
+		var nextId = jQuery("div[id$='upload_"+number+"']").next().attr('id');
+
+		if (jQuery('#progress_'+number).find('h3').html() == "[ 업로드 중 ]") {
+			alert('파일 업로드 중에는 이동할 수 없습니다.');
+			return false;
+		}
+
+		if (divNodes.length <= 1 || nextId == "uploadSet" || nextId == undefined) {
+			alert('더 이상 아래로 이동할 수 없습니다.');
+			return false;
+		}
+
+		var Div = jQuery("div[id$='upload_"+number+"']");
+		var prevId = Div.next().attr('id');
+
+		var oldDiv = Div.clone(true);
+		Div.remove();
+		jQuery("#"+prevId).after(oldDiv);
+
+		jQuery('.btm_btn_add').html('');
+		jQuery('.btm_btn_add').last().html(this.UploadBtn());
+		this.clickExecute();
+	},
+
+	uploadExecute : function() {
+
+		var ExistMsg = false;
+
+		switch (true)
+		{
+			case ($('#epi_title').val() == "") :
+				if(!ExistMsg) fDisplayMsg('epi_title', '', '', 'pwdComment', '에피소드 제목을 입력해 주세요.', 'y', '#ED1E20');
+				ExistMsg = true;
+				return false;
+			break;
+
+			case ($('#epi_writer').val() == "") :
+				if(!ExistMsg) fDisplayMsg('epi_writer', '', '', 'pwdComment', '에피소드 작성자를 입력해 주세요.', 'y', '#ED1E20');
+				ExistMsg = true;
+				return false;
+			break;
+			/*
+			case ($('#epi_content').val() == "") :
+				if(!ExistMsg) fDisplayMsg('epi_content', '', '', 'pwdComment', '에피소드 내용을 입력해 주세요.', 'y', '#ED1E20');
+				ExistMsg = true;
+				return false;
+			break;
+			*/
+
+			case ($('#epi_tag').val() == "") :
+				if(!ExistMsg) fDisplayMsg('epi_tag', '', '', 'pwdComment', '에피소드 태그를 입력해 주세요.', 'y', '#ED1E20');
+				ExistMsg = true;
+				return false;
+			break;
+		}
+
+		/****** 첨부파일 체크 start	*****/
+		var Temp_epi_file2 = $("#epi_file2").val();
+
+		if( Temp_epi_file2 != "" ) {
+			var fileExt = Temp_epi_file2.substring(Temp_epi_file2.lastIndexOf(".") + 1);
+			var reg = /gif|jpg|png|pdf/i;
+
+			if( reg.test(fileExt) == false ){
+				alert('첨부파일은 *.png, *.gif, *.jpg, *.pdf 파일만 가능합니다.');
+				return false;
+			}
+		}
+		/****** 첨부파일 체크 end	*****/
+
+		var oCFORM = jQuery('#data_upload_1');
+		oCFORM.html('');
+
+		oCFORM.append('<input type="hidden" name="epi_chn_idx" id="epi_chn_idx" value="'+jQuery('#epi_chn_idx').val()+'">'); //에피소드가 속한 채널의 고유 idx 
+		oCFORM.append('<input type="hidden" name="epi_chn_category" id="epi_chn_category" value="'+jQuery('#epi_chn_category').val()+'">');		//에피소드가 속한 채널의 카테고리값
+		oCFORM.append('<input type="hidden" name="epi_sns_type" id="epi_sns_type" value="0">');			//에피소드 sns 공유 타입 
+		oCFORM.append('<input type="hidden" name="epi_good_cnt" id="epi_good_cnt" value="0">');			//에피소드 좋아요 카운트 
+
+		if(jQuery('#epi_file2').val())
+			oCFORM.append('<input type="hidden" name="epi_file2" id="epi_file2" value="'+jQuery('#epi_file2').val()+'">');			//에피소드 좋아요 카운트 
+
+		oCFORM.append('<input type="hidden" name="epi_title" id="epi_title" value="'+jQuery('#epi_subtitle').val()+'" >');
+		oCFORM.append('<input type="hidden" name="epi_name" id="epi_name" value="'+jQuery('#epi_title').val()+'" >');
+		oCFORM.append('<input type="hidden" name="epi_writer" id="epi_writer" value="'+jQuery('#epi_writer').val()+'" >');
+		oCFORM.append('<input type="hidden" name="epi_content" id="epi_content" value="'+jQuery('#epi_content').val()+'" >');
+		oCFORM.append('<input type="hidden" name="epi_tag" id="epi_tag" value="'+jQuery('#epi_tag').val()+'" >');
+		oCFORM.append('<input type="hidden" name="epi_open" id="epi_open" value="'+jQuery(':radio[name="epi_open"]:checked').val()+'" >');
+
+		oCFORM.append('<input type="hidden" name="epi_idx" id="epi_idx" value="'+jQuery('#epi_idx').val()+'" >');
+
+		var openDate = jQuery('#epi_open_date').val();
+		var openHour = jQuery('#epi_open_hour').val();
+		var openMin = jQuery('#epi_open_min').val();
+
+		if(openDate && openHour && openMin)
+			var timeStr = openDate+" "+openHour+":"+openMin+":00";
+		else
+			var timeStr = "0000-00-00 00:00:00";
+
+		oCFORM.append('<input type="hidden" name="epi_open_date" id="epi_open_date" value="'+jQuery('#epi_open_date').val()+'" >');
+		oCFORM.append('<input type="hidden" name="epi_open_hour" id="epi_open_hour" value="'+jQuery('#epi_open_hour').val()+'" >');
+		oCFORM.append('<input type="hidden" name="epi_open_min" id="epi_open_min" value="'+jQuery('#epi_open_min').val()+'" >');
+
+		oCFORM.append('<input type="hidden" name="epi_time" id="epi_time" value="'+timeStr+'" >');
+		oCFORM.append('<input type="hidden" name="epi_lang_id" id="epi_lang_id" value="ko" >');
+		oCFORM.append('<input type="hidden" name="epi_fb_yn" id="epi_fb_yn" value="N" >');
+		oCFORM.append('<input type="hidden" name="epi_tw_yn" id="epi_tw_yn" value="N" >');
+		oCFORM.append('<input type="hidden" name="epi_chart_yn" id="epi_chart_yn" value="Y" >');
+
+		this.dataSubmit();
+	},
+
+	dataSubmit : function() {	 // DB Submit
+		var rValue = true;
+		var divNodes = jQuery('.uld_bx2');
+
+		if(jQuery('#up_status').val() == 'Y' ) {
+			alert('업로드가 진행중입니다.\n업로드완료 후 저장하시기 바랍니다.');
+			return;
+		}
+
+
+		divNodes.each(function(i){
+			if (jQuery(this).find('h3').html() == "[ 업로드 중 ]") {
+				alert(rsLangPage['dataSubmitAlert']);
+				rValue = false;
+				return false;
+			}
+		});
+
+		if (rValue == false) {
+			return false;
+		}
+
+		var number = this.arrayCnt.shift();
+		//var dataSendUrl = '/json/v003/GPFileUpLoad2.dll/save';
+
+
+		if(!jQuery('#epi_file').val())
+		{	
+			jQuery('#data_upload_1').append('<input type="hidden" name="incoding" id="incoding" value="N" />');
+
+
+			var dataSendUrl = "/?c=dashboard&m=set_episode_modify";
+			//var frm = document.fmfile_1;
+			//frm.action = dataSendUrl;
+			//frm.target = 'h_frm_1';
+			var frm = jQuery('#fmfile_1');
+			frm.append('<input type="hidden" name="incoding" id="incoding" value="N" />');
+			frm.append('<input type="hidden" name="epi_name" id="epi_name" value="'+jQuery('#epi_title').val()+'" >');
+			frm.append('<input type="hidden" name="epi_title" id="epi_title" value="'+jQuery('#epi_subtitle').val()+'" >');
+			frm.attr("method", "post");
+			frm.attr("action", dataSendUrl);
+			frm.attr("target", "h_frm_1");
+			frm.submit();
+
+			//alert('에피소드가 저장되었습니다.');
+		}
+		else
+		{
+			//jQuery('#data_upload_1').append('<input type="hidden" name="epi_file" id="epi_file" value="'+jQuery('#epi_file').val()+'" />');
+			var dataSendUrl = 'http://up1.pandora.tv/jellypod/GJellyPodUpLoad.dll/save';
+
+			if(jQuery('#epi_file').val() ) {
+				$.ajax({
+					type : 'post',
+					jsonpCallback: "callback",
+					url : dataSendUrl, 
+					dataType : "jsonp",
+					//data : $("#data_upload_1").serialize(),
+					data : {"epi_file": $("#epi_file").val(), "epi_idx": $("#epi_idx").val(), "epi_chn_idx": $("#epi_chn_idx").val()},
+					success : function(res){
+						if( res.epi_idx ) {
+							jQuery('#epi_idx').val(res.epi_idx);
+							//alert(jQuery('#epi_idx').val());
+							//this.formSubmitFrn();
+							var dataSendUrl = "/?c=dashboard&m=set_episode_modify";
+							//var frm = document.fmfile_1;
+							//frm.action = dataSendUrl;
+							//frm.target = 'h_frm_1';
+							var frm = jQuery('#fmfile_1');
+							
+							frm.append('<input type="hidden" name="incoding" id="incoding" value="N" />');
+							frm.append('<input type="hidden" name="epi_name" id="epi_name" value="'+jQuery('#epi_title').val()+'" >');
+							frm.append('<input type="hidden" name="epi_title" id="epi_title" value="'+jQuery('#epi_subtitle').val()+'" >');
+							frm.attr("method", "post");
+							frm.attr("action", dataSendUrl);
+							frm.attr("target", "h_frm_1");
+							frm.submit();
+							//jQuery('#show_delay').show();
+
+						}
+					},
+					error : function (e) {
+						console.log("ajax Error = " + e + ", dataSendUrl = " + dataSendUrl);
+					}
+				});	
+			}
+		}
+
+
+
+//	}else {
+
+		//console.log(dataSendUrl);
+//		var oForm = jQuery('#data_upload_1');
+//		oForm.attr("method", "post");
+//		oForm.attr("action", dataSendUrl);
+//		oForm.attr("target", "data_frm");
+//		oForm.submit();
+//	}
+
+		//$('.pop_box_da2').hide().css('height',$('body').height());
+		//location.reload();
+
+	},
+
+	formSubmitFrn : function() {
+
+		var dataSendUrl = "/?c=dashboard&m=set_episode_modify";
+		//var frm = document.fmfile_1;
+		//frm.action = dataSendUrl;
+		//frm.target = 'h_frm_1';
+		var frm = jQuery('#fmfile_1');
+		frm.attr("method", "post");
+		frm.attr("action", dataSendUrl);
+		frm.attr("target", "h_frm_1");
+		frm.submit();
+
+		alert('에피소드가 저장되었습니다.');
+	},
+
+	nextFormCtl : function(state, prgid) {
+		if(state < 1) {
+			var yn = false;
+			var length = this.arrFailState.length ;
+			for(var i = 0 ; i < length ; i++) {
+				if(this.arrFailState[i] == state) yn = true ;
+			}
+			if(yn == false) this.arrFailState.push(state);
+		}
+
+		if(this.arrayCnt.length <= 0) {
+			this.endUpload(prgid);
+		} else {
+			this.dataSubmit();
+		}
+	},
+
+	endUpload : function(prgid) {
+		//var goUrl = 'http://channel.pandora.tv/channel/video.ptv?ch_userid=' + chInfoJson.ch_userid;
+		var goUrl = 'http://www.jellypod.com/?c=channel&chnidx=' + chInfoJson.ch_userid;
+
+		if(this.arrFailState.length == 0) {
+			parameters = {ch_userid:chInfoJson.ch_userid, cnt:this.Cnt};
+			jQuery.ajax({
+				type : 'POST',
+				url : "/php/uploadLimit.ptv",
+				data : parameters,
+				success : function (data) {
+					var json = eval("(" + data + ")");
+
+					if (json['result'] == "OK") {
+						location.href = goUrl + "&prgid=" + prgid + "&categid=all&page=1";
+						//location.href = "http://channel.pandora.tv/channel/themainfo.ptv";
+					}
+				},
+				404 : function () {
+					alert('비정상적인 접근 입니다.');
+				},
+				error : function () {
+					alert('error');
+				}
+			});
+		} else {
+			alert('업로드 실패한 파일은 '+this.arrFailState.length+'개 입니다.');
+		}
+	},
+
+	endFileUpload : function(state, order) {
+		if(state == 1) {
+			return false;
+		} else {
+			this.uploadMsg(state, order);
+		}
+	},
+
+	uploadMsg : function(state, order) {
+		var result = "";
+		var color = "red";
+		switch(state) {
+			case 1 : result = rsLangPage["resultSucc"]; color = "blue"; break ;
+			case 0 : result = rsLangPage["resultFailSave"] + "(<a id='saveAgain_0' title='" + rsLangPage["resultFailSaveCaption"] + "'>" + rsLangPage["resultFailSaveAgain"] + "</a>)"; break ;
+			case -1 : result = rsLangPage["resultFailFile"]; break ;
+			case -2 : case -5 : result = rsLangPage["resultFailNetwork"]; break ;
+			case -3 : result = rsLangPage["resultFailAccess"]; break ;
+			case -4 : alert(rsLangPage["resultOverFile"]); return false; break ;
+		}
+
+		if(order) jQuery('#progress_1').show().html(this.ProgressFail(result, order));
+	}
+};
+
+var oUploadControlM = {
+	arrCase : {
+		SAVE	: -1,		// 파일을 저장할 수 없습니다.
+		FAIL	: -2,		// 시스템 장애가 발생했습니다.
+		REFE	: -3,		// 시스템 접근 권한이 없습니다.
+		OVER	: -4,		// 인코딩 5개 넘었을때..
+		SDIE	: -5,		// 중간에 서버 죽었을때..
+		DBER	: 0,		// 시스템 장애가 발생했습니다.(DB)
+		SUCC	: 1
+	},
+
+	resultFile : function(state, svr, f_index) {
+		for (var i=0 ; i<uploadTemplete.arrayCnt.length ; i++) {
+			if (uploadTemplete.arrayCnt[i]==f_index) {
+				var order = i;
+			}
+		}
+
+		uploadTemplete.endFileUpload(this.arrCase[state], order);
+	} ,
+
+	resultData : function(state, prgid) {
+		uploadTemplete.uploadMsg(this.arrCase[state],'');
+		uploadTemplete.nextFormCtl(this.arrCase[state], prgid);
+	}
+}
+
+</script>
+
+
+<script language="javascript">
+<!--
+	function epi_subtitlefocus() {
+		if( $("input[name='epi_subtitle']").val() == "" ) {
+			$("input[name='epi_subtitle']").val($("input[name='epi_title']").val());
+		}
+	}
+
+	function topReload() {
+		
+		alert('에피소드가 저장되었습니다.');
+		//$('.pop_box_da2').hide().css('height',$('body').height());
+		location.reload();
+						
+	}
+
+	function reset_form() {
+		$('.pop_box_da2').hide().css('height',$('body').height());
+		jQuery('#fmfile_2')[0].reset();
+		jQuery('#fmfile_1')[0].reset();
+	}
+
+	function viewNation(obj){
+		jQuery("#nationCountry").show();
+	}
+
+	function viewNationOver(){
+		jQuery("#nationCountry").show();
+	}
+
+	function viewNationOut(){
+		jQuery("#nationCountry").hide();
+	}
+
+	function setNation (lang) {
+		cookieSet.SetCookie("clientLang", lang, 30*60*60*60);
+		location.reload();
+	}
+
+	function installProc(id) {
+		if (id == 1) {
+			jQuery("#installDwn").attr("src", "http://127.0.0.1:12882/AUTOUPLOAD_CALL_LAUNCHING");
+		} else {
+			jQuery("#installDwn").attr("src", "http://imgcdn.pandora.tv/pan_img/appDownload/AutoUpload/AutoUpload_Install.exe");
+		}
+	}
+
+	function installHtml() {
+		var img = '<img src="http://127.0.0.1:12882/AUTOUPLOAD_IS_INSTALLED" width=1 height=1 onerror="javascript:installProc(0);" onload="javascript:installProc(1)" style="display:none" />';
+		jQuery('#autoIncoding').html(jQuery('#autoIncoding').html() + img);
+	}
+
+	//jQuery(window).bind('beforeunload', function() {
+	//	return '이 페이지를 벗어나면 업로드가 취소됩니다.'; 
+	//});
+
+	document.domain='jellypod.com';
+
+	var chInfoJson	=  {"chno":"249655792","ch_userid":"363"};
+
+	var cnt = "";
+	var my_login_category = [{"categ_id":"34875630","par_categ_id":"34875630","categ_name":"\ub0b4 \ud504\ub85c\uadf8\ub7a8","categ_pub":"0","upper_class":"05","lower_class":"0078","prg_cnt":"2","level":1,"cnt":0}];;
+
+	jQuery(window).load(function(){
+		uploadTemplete.Set();
+
+		jQuery('#nationCountry').mouseover(function() { viewNationOver(); });
+		jQuery('#nationCountry').mouseout(function() { viewNationOut(); });
+	});
+
+	jQuery(document).ready(function(){
+/*
+		jQuery("#sbsendpop").css("display", ( cookieSet.GetCookie('sbsendpop') ? 'none' : 'block'));
+		jQuery('#todaynView, #nView').click(function() {
+			try {
+				if( this.id == "todaynView" ){
+					cookieSet.SetCookie("sbsendpop", "1" , 60*60*24);
+				}
+				jQuery("#sbsendpop").css("display", "none");
+			} catch(e) {}
+		});
+*/
+	});
+
+
+	function imgAttach_epi() {
+		$("#epi_file2").click();
+	}
+
+	function imgAttach_upload() {
+		$("#f_vodfile_1").click();
+	}
+
+//-->
+</script>
+
+<style type="text/css">
+.upload_new .bx_top_c4 {
+background: #F4F4F4;
+color: #118FDE;
+}
+
+.upload_new .bx_top {
+position: relative;
+clear: both;
+height: 59px;
+}
+
+.upload_new .bx_top_c1{
+	background:#f4f4f4
+}
+
+.gfbox2 {
+position: absolute;
+overflow: hidden;
+width: 538px;
+height: 32px;
+left: 138px;
+top: 13px;
+color: #F53132;
+line-height: 32px;
+font-weight: bold;
+}
+
+.bx_top_c4 .gftit {
+color: #118FDE;
+background: #F4F4F4;
+border: none;
+}
+
+.gf_c{width:538px;height:32px;top:1px;background:url(http://imgcdn.pandora.tv/ptv_img/newptv/up_bar.gif) repeat-x 0 0 scroll;}
+.bx_top_c1 .gftit{background:#F4F4F4;border:none}
+.gf_txt{right:10px;top:0;color:#fff;line-height:32px;text-align:right;}
+
+</style>
+
+			<div class="pop_box_da2" id="popup">
+				<div class="pop_opac">&nbsp;</div>
+				<div class="popup11" style="top:200px;">
+					<div class="head">
+						<h1>에피소드 <span id="mode_txt">등록</span></h1>
+						<input type="image" src="http://imgcdn.pandora.tv/jellypod/images/sub/pop_close.gif" alt="닫기" id="close" class="close" onclick="reset_form()"/>
+					</div>
+
+					<input type="hidden" name="epi_file" id="epi_file">
+
+					<div class="channel_make">
+						<dl>
+					
+							<div id="progress_1" style="display:none;"></div>
+
+							<!-- dt class="pdt20"><label for="epi_file">[ 업로드 중 ]</label>&nbsp;
+							<img src="http://imgcdn.pandora.tv/jellypod/images/sub/icon_star.gif" alt="img"></dt>
+								<dd class="pdt20">
+								<p class="gf_c" style="width:50%;left:200%; border:1px solid #000;">
+								<span class="gf_txt">0%</span>
+								</p>
+								<p class="gf_f"></p>
+								<div class="cate_txt"><span id="upFilePreview"></span></div>
+							</dd -->
+
+							<form name="fmfile_2" id="fmfile_2" method="post" enctype="multipart/form-data" >
+							<input type="hidden" name="filename" value="" id="filename">
+							<div id="file_find_1">
+							<dt class="pdt20" ><label for="epi_file">에피소드 업로드</label>&nbsp;<img src="http://imgcdn.pandora.tv/jellypod/images/sub/icon_star.gif" alt="img"></dt>
+							<dd class="pdt20">
+								<input type="file" name="vodfile" id="f_vodfile_1" class="text" />
+								<div class="cate_txt"><span id="upFilePreview"></span></div>
+
+								<div class="progress" style="display:none;"><span id="gf_progress" style="width:40%;">50%</span></div>
+
+							</dd>
+							</div>
+							</form>							
+
+
+							<!-- form name="fmfile_2" id="fmfile_2" method="post" enctype="multipart/form-data" >
+							<input type="hidden" name="filename" value="" id="filename">
+							<div id="file_find_1">
+								<dt class="pdt20" ><label for="epi_file">에피소드 업로드</label>&nbsp;<img src="http://imgcdn.pandora.tv/jellypod/images/sub/icon_star.gif" alt="img"></dt>
+								<dd class="pdt20">
+									<input type="file" name="vodfile" id="f_vodfile_1" class="text" style="display:none;" onchange="$('#temp_upload_attach').val(this.value);" />
+									<input type="text" name="temp_upload_attach" id="temp_upload_attach" class="text1" readonly >
+									<img alt="찾아보기" src="http://imgcdn.pandora.tv/jellypod/images/sub/btn_find.gif" style="cursor:pointer" onclick="imgAttach_upload();">
+									<div class="cate_txt"><span id="upFilePreview"></span></div>
+
+									<div class="progress" style="display:none;">
+										<span id="gf_progress" style="width:40%;">50%</span>
+									</div>
+
+								</dd>
+							</div>
+							</form -->
+
+							<!-- div id="progress_1" style="display:none;">
+							<span id="gf_progress" style="width:40%;"></span>
+							</div -->
+
+							<form name="fmfile_1" id="fmfile_1" method="post" enctype="multipart/form-data" >
+							<input type="hidden" name="up_status" value="N" id="up_status">
+							<input type="hidden" name="filename" value="" id="filename">
+							<input type="hidden" name="f_index" id="f_index" value="1">
+							<input type="hidden" name="epi_chn_idx" id="epi_chn_idx" value=""> 							<input type="hidden" name="epi_chn_category" id="epi_chn_category" value=""> 							<input type="hidden" name="epi_sns_type" value=""> 							<input type="hidden" name="epi_good_cnt" value=""> 							<input type="hidden" name="epi_encoding_type" value=""> 							<input type="hidden" name="epi_idx" id="epi_idx" value="" >
+							<input type="hidden" name="epi_file_2_name" id="epi_file_2_name" value="" >
+							<dt><label for="ch_epi_cate1">채널 정보</label></dt>
+							<dd>
+								<input type="text" name="epi_category" id="epi_category" class="text3 maker" value="" readonly/>
+								<input type="text" name="epi_chn_name" id="epi_chn_name" class="text4 maker" value="" readonly/>
+							</dd>
+							<dt><label for="epi_title">제목</label>&nbsp;<img src="http://imgcdn.pandora.tv/jellypod/images/sub/icon_star.gif" alt="img"></dt>
+							<dd>
+								<input type="text" name="epi_title" id="epi_title" class="text" />
+							</dd>
+							<dt><label for="epi_subtitle">에피소드 부제목</label></dt>
+							<dd>
+								<input type="text" name="epi_subtitle" id="epi_subtitle" class="text" onKeyup="epi_subtitlefocus();" onMouseDown="epi_subtitlefocus();"/>
+							</dd>
+							<dt><label for="epi_writer">저자</label>&nbsp;<img src="http://imgcdn.pandora.tv/jellypod/images/sub/icon_star.gif" alt="img"></dt>
+							<dd>
+								<input type="text" name="epi_writer" id="epi_writer" class="text" />
+							</dd>
+							<dt><label for="epi_content">내용</label>&nbsp;<!-- <img src="http://imgcdn.pandora.tv/jellypod/images/sub/icon_star.gif" alt="img"> --></dt>
+							<dd>
+								<textarea class="text2" id="epi_content" name="epi_content" ></textarea>
+							</dd>
+							<dt><label for="epi_tag">태그</label>&nbsp;<img src="http://imgcdn.pandora.tv/jellypod/images/sub/icon_star.gif" alt="img"></dt>
+							<dd>
+								<input type="text" name="epi_tag" id="epi_tag" class="text"/>
+								<span class="cate_txt">(,)콤마로 구분하여 입력 /  추천태그 : 여행, 사진, 음악, 책, 미술</span>
+							</dd>
+							<dt><label for="epi_file">첨부파일</label></dt>
+							<dd>
+								<input class="text5" type="file" name="epi_file2" id="epi_file2" style="display:none;" onChange="$('#temp_epi_attach').val(this.value);">
+								<input class="text1" type="text" name="temp_epi_attach" id="temp_epi_attach" readOnly>
+								<img alt="찾아보기" src="http://imgcdn.pandora.tv/jellypod/images/sub/btn_find.gif" style="cursor:pointer" onclick="imgAttach_epi();">
+								<span class="cate_txt">* 첨부파일은 *.png, *.gif, *.jpg, *.pdf 파일만 가능합니다.
+								<br />* 에피소드 관련 자료를 첨부할 수 있습니다.</span>
+								<!-- img src="http://imgcdn.pandora.tv/jellypod/images/sub/btn_find.gif" alt="찾아보기" -->
+							</dd>
+							<dt><label for="confirm2">공개&nbsp;<img src="http://imgcdn.pandora.tv/jellypod/images/sub/icon_star.gif" alt="img"></label></dt>
+							<dd>
+								<input type="radio" id="epi_open_1" name="epi_open" value="Y" checked>
+								<label for="epi_open_1">즉시</label>
+								<input type="radio" id="epi_open_2" name="epi_open" value="N">
+								<label for="epi_open_2">비공개</label>
+								<input type="radio" id="epi_open_3" name="epi_open" value="T">
+								<label for="epi_open_3">시간설정</label>
+								<input type="text" class="text6" id="epi_open_date" size="14" name="epi_open_date" title="YYYY-MM-DD" style="width:70px">
+																<script type="text/javascript">
+								// <![CDATA[ 
+
+								var today     = new Date(),
+									// low range, 150 days before today's date
+									rangeLow  = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 250),
+									// high range, one year after today's date
+									rangeHigh = new Date(today.getFullYear() + 1, today.getMonth(), today.getDate());
+									 
+								var opts = {                            
+										formElements:{"epi_open_date":"Y-ds-m-ds-d"},
+										showWeeks:true,
+										statusFormat:"l-cc-sp-d-sp-F-sp-Y",
+										// Set some dynamically calculated ranges
+										rangeLow:rangeLow.getFullYear() + "" + pad(rangeLow.getMonth()+1) + pad(rangeLow.getDate()),
+										rangeHigh:rangeHigh.getFullYear() + "" + pad(rangeHigh.getMonth()+1) + pad(rangeHigh.getDate())                
+								};      
+								datePickerController.createDatePicker(opts);
+								// ]]>
+								</script>
+																<select id="epi_open_hour" name="epi_open_hour" class="text6">
+																		<option value="00">00</option>
+																		<option value="01">01</option>
+																		<option value="02">02</option>
+																		<option value="03">03</option>
+																		<option value="04">04</option>
+																		<option value="05">05</option>
+																		<option value="06">06</option>
+																		<option value="07">07</option>
+																		<option value="08">08</option>
+																		<option value="09">09</option>
+																		<option value="10">10</option>
+																		<option value="11">11</option>
+																		<option value="12">12</option>
+																		<option value="13">13</option>
+																		<option value="14">14</option>
+																		<option value="15">15</option>
+																		<option value="16">16</option>
+																		<option value="17">17</option>
+																		<option value="18">18</option>
+																		<option value="19">19</option>
+																		<option value="20">20</option>
+																		<option value="21">21</option>
+																		<option value="22">22</option>
+																		<option value="23">23</option>
+								</select> 시&nbsp;
+								<select id="epi_open_min" name="epi_open_min" class="text6">
+																		<option value="00">00</option>
+																		<option value="01">01</option>
+																		<option value="02">02</option>
+																		<option value="03">03</option>
+																		<option value="04">04</option>
+																		<option value="05">05</option>
+																		<option value="06">06</option>
+																		<option value="07">07</option>
+																		<option value="08">08</option>
+																		<option value="09">09</option>
+																		<option value="10">10</option>
+																		<option value="11">11</option>
+																		<option value="12">12</option>
+																		<option value="13">13</option>
+																		<option value="14">14</option>
+																		<option value="15">15</option>
+																		<option value="16">16</option>
+																		<option value="17">17</option>
+																		<option value="18">18</option>
+																		<option value="19">19</option>
+																		<option value="20">20</option>
+																		<option value="21">21</option>
+																		<option value="22">22</option>
+																		<option value="23">23</option>
+																		<option value="24">24</option>
+																		<option value="25">25</option>
+																		<option value="26">26</option>
+																		<option value="27">27</option>
+																		<option value="28">28</option>
+																		<option value="29">29</option>
+																		<option value="30">30</option>
+																		<option value="31">31</option>
+																		<option value="32">32</option>
+																		<option value="33">33</option>
+																		<option value="34">34</option>
+																		<option value="35">35</option>
+																		<option value="36">36</option>
+																		<option value="37">37</option>
+																		<option value="38">38</option>
+																		<option value="39">39</option>
+																		<option value="40">40</option>
+																		<option value="41">41</option>
+																		<option value="42">42</option>
+																		<option value="43">43</option>
+																		<option value="44">44</option>
+																		<option value="45">45</option>
+																		<option value="46">46</option>
+																		<option value="47">47</option>
+																		<option value="48">48</option>
+																		<option value="49">49</option>
+																		<option value="50">50</option>
+																		<option value="51">51</option>
+																		<option value="52">52</option>
+																		<option value="53">53</option>
+																		<option value="54">54</option>
+																		<option value="55">55</option>
+																		<option value="56">56</option>
+																		<option value="57">57</option>
+																		<option value="58">58</option>
+																		<option value="59">59</option>
+								</select> 분
+							</dd>
+							<!-- 참고: 마지막줄 패딩 영역 있음 클래스명:pdb20 -->
+							<!-- dt class="pdb20"><label for="confirm2">SNS 자동등록</label></dt>
+							<dd class="pdb20">
+								<input type="checkbox" id="fb_register" name="fb_register" value="Y">
+								<label for="fb_register"><img src="http://imgcdn.pandora.tv/jellypod/images/sub/icon_fb.gif"></label>
+								<input type="checkbox" id="tw_register" name="tw_register" value="Y">
+								<label for="tw_register"><img src="http://imgcdn.pandora.tv/jellypod/images/sub/icon_tw.gif"></label>
+							</dd -->
+						</dl>
+					</div>
+					<div class="under_line"></div>
+					<div style="top: 500px;height: 734; padding-bottom:20px;">
+						<img style="margin-left:528px;cursor:pointer;" alt="저장" src="http://imgcdn.pandora.tv/jellypod/images/sub/btn_save.gif" id="btnServerEncode">
+						<img src="http://imgcdn.pandora.tv/jellypod/images/sub/btn_cancle.gif" alt="취소" id="cancel"  onclick="reset_form()" style="cursor:pointer">
+					</div>
+					</form>
+
+					<iframe height="0" width="0" style="position: static; display: none;" name="data_frm" id="data_frm"></iframe>
+
+					<script type="text/javascript" name="makePCookie" id="makePCookie" src="http://imgcdn.pandora.tv/_ptv_all/util/makePCookie_jellypod_utf.js"></script>
+
+					<form id="data_upload_1" name="data_upload_1"  enctype="multipart/form-data"></form>
+					<iframe height="0" width="0" style="position: static; display: none;" name="h_frm_1" id="h_frm_1"></iframe>
+
+				</div>
+			</div>			<!-- 에피소드 등록 팝업  end -->
+
+			<!-- 프로모션 신청 팝업 start -->
+						<!-- 프로모션 신청 팝업  end -->
+			
+		</div>
+		<!-- wrapper end-->
+
+		<script>
+			document.domain = "jellypod.com";
+//			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+//			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+//			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+//			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+//
+//			ga('create', 'UA-42460357-1', 'jellypod.com');
+//			ga('send', 'pageview');
+
+			function setReURLCookie(c_name,value,exdays) {
+				var exdate=new Date();
+				exdate.setDate(exdate.getDate() + exdays);
+				var c_value=escape(value) + ((exdays==null) ? "" : "; expires="+exdate.toUTCString());
+				document.cookie=c_name + "=" + c_value;
+			}
+
+			//player 영역 체크
+			if(top.jplayer==undefined ||top.jplayer=="undefined"){
+				var thisUrl = location.href;
+				var strCnt = thisUrl.indexOf("?");
+				if( strCnt > 0 ) {
+					var varList = thisUrl.substring(strCnt + 1);
+					setReURLCookie("jellyReURL", varList, 1);
+				}
+			}
+
+		</script>
+
+		<iframe id="logfr" name="logfr" border="0" frameborder="0" width="0" height="0" src="about:blank" style="display:none"></iframe>
+
+		<iframe id="actlogfr" name="actlogfr" border="0" frameborder="0" width="0" height="0" src="about:blank" style="display:none"></iframe>
+
+		<!-- 에피소드 공유 start -->
+		<div class="pop_box1 chom0" id="popup_epi">
+			<div class="pop_opac">&nbsp;</div>
+			<div class="popup3" id="popup_epi_info">
+				<div class="head">
+				<h1>에피소드 <span>공유</span></h1>
+					<input type="image" src="http://imgcdn.pandora.tv/jellypod/images/sub/pop_close.gif" alt="닫기" class="close">
+				</div>
+				<dl class="chanel">
+				<dt class="pdt10">SNS 공유</dt>
+					<dd>
+						<img src="http://imgcdn.pandora.tv/jellypod/images/sub/h_sns1.png" alt="facebook" onclick="LayerAction.Share_Face();" style="cursor:pointer;"/>
+						<img src="http://imgcdn.pandora.tv/jellypod/images/sub/h_sns2.png" alt="me2day" onclick="LayerAction.Share_Me2day();" style="cursor:pointer;"  />
+						<img src="http://imgcdn.pandora.tv/jellypod/images/sub/h_sns3.png" alt="twitter" onclick="LayerAction.Share_Twit();" style="cursor:pointer;"/>
+						<img src="http://imgcdn.pandora.tv/jellypod/images/sub/h_sns4.png" alt="google plus" onclick="LayerAction.Share_Google();" style="cursor:pointer;"/>
+					</dd>
+					<!--dt>플레이어</dt>
+					<dd>플레이어 사이즈
+					<input type="radio" name="six" id="six" class="radi"/>
+					<label for="six">16:9 (540x331)</label>
+					<input type="radio" name="four" id="four" />
+					<label for="four">4:3 (500x402)</label>
+					<textarea name="" id="" cols="30" rows="10"><OBJECT id="oplayer20639787" name="playerMain20639787" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="600" height="147"><PARAM NAME="Movie" VALUE="http://PARAM NAME="Movie" VALUE="http://>
+					</textarea>
+					<input type="image" alt="복사하기" src="http://imgcdn.pandora.tv/jellypod/images/sub/btn_copy.gif">
+					</dd-->
+				</dl>
+			</div>
+		</div>
+		<!-- 에피소드 공유 end -->
+
+
+	</body>
+</html>

@@ -1,0 +1,23 @@
+<?
+	header ("Cache-Control : no-cache");
+	header ("Cache-Control : post-check=0 pre-check=0");
+	header ("Pragma:no-cache");
+	$param = "";
+	$enc_retInfo =  $_GET["retInfo"];
+
+	$param = "?retInfo=$enc_retInfo";
+?>
+
+<html>
+<head>
+<script language="JavaScript">
+	function end() {
+		//window.opener.location.href = 'http://.../ipin_result_seed.php' + '<?=$param?>';
+		location.href = './ipin_signup_return_ok.ptv' + '<?=$param?>';
+		//self.close();
+	}
+</script>
+</head>
+<body onload="javascript:end()">
+</body>
+</html>

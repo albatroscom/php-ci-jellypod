@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" version="2.0">
+
+<channel>
+<title>정은임의 영화음악 팟캐스트</title>
+<link>http://www.worldost.com</link>
+<language>ko-kr</language>
+<copyright>MBC</copyright>
+<itunes:subtitle>1992~1995년, 2003~2004년 동안 MBC라디오에서 진행되었던 정은임의 FM영화음악 프로그램 녹음분입니다.</itunes:subtitle>
+<itunes:author>정은임</itunes:author>
+<itunes:summary>[정은임의 영화음악 팟캐스트]는 정은임 추모사업회(http://www.worldost.com)에 게재된 mp3를 재편집하여 만들었습니다. 그 mp3들은 정은임 아나운서의 아버님께서 추모사업회에 전달한 카세트테이프를 민연홍님께서 2004년부터 3년 반동안 파일로 변환한 것입니다. 그 동안 추모사업회를 운영해온 모든 분께 감사드립니다. 모바일을 비롯한 여러 플랫폼에서 손쉽게 방송을 들을 수 있도록 2010년 12월 이 팟캐스트를 작성하였습니다. 정은임 아나운서를 기억하는 모든 분들께 도움이 되었으면 좋겠습니다. (2010년 12월 김석영 @dorati) [+.Apple 공식팟캐스트로 접근시에는 301개의 방송만 보이지만, 데스크탑에 설치하신 itunes에서 http://goo.gl/cGip1 로 구독을 추가하시거나, internet exploer 7+, safari 3+, firefox 3+ 버전에서 http://goo.gl/cGip1 로 접근하시면 832개의 모든 방송을 들으실 수 있습니다. 팟캐스트를 들을 수 있는 좀 더 자세한 방법은 http://goo.gl/YIfRj 에서 확인하실 수 있습니다]</itunes:summary>
+<description>[정은임의 영화음악 팟캐스트]는 정은임 추모사업회(http://www.worldost.com)에 게재된 mp3를 재편집하여 만들었습니다. 그 mp3들은 정은임 아나운서의 아버님께서 추모사업회에 전달한 카세트테이프를 민연홍님께서 2004년부터 3년 반동안 파일로 변환한 것입니다. 그 동안 추모사업회를 운영해온 모든 분께 감사드립니다. 모바일을 비롯한 여러 플랫폼에서 손쉽게 방송을 들을 수 있도록 2010년 12월 이 팟캐스트를 작성하였습니다. 정은임 아나운서를 기억하는 모든 분들께 도움이 되었으면 좋겠습니다. (2010년 12월 김석영 @dorati) [+.Apple 공식팟캐스트로 접근시에는 301개의 방송만 보이지만, 데스크탑에 설치하신 itunes에서 http://goo.gl/cGip1 로 구독을 추가하시거나, internet exploer 7+, safari 3+, firefox 3+ 버전에서 http://goo.gl/cGip1 로 접근하시면 832개의 모든 방송을 들으실 수 있습니다. 팟캐스트를 들을 수 있는 좀 더 자세한 방법은 http://goo.gl/YIfRj 에서 확인하실 수 있습니다]</description>
+<itunes:owner>
+<itunes:name>김석영</itunes:name>
+<itunes:email>landbeyond@gmail.com</itunes:email>
+</itunes:owner>
+<itunes:image href="http://dl.dropbox.com/u/14479900/ost.jpg" />
+<itunes:category text="TV &amp; Film"/>
+<itunes:category text="Music" />
+
+<item>
+<title>1992.11.02. FM 영화음악 첫방송 일부분</title>
+<itunes:author>정은임</itunes:author>
+<itunes:subtitle>1992년 11월 2일 (월) (출처: 정은임 추모사업회 홈페이지. http://www.worldost.com/bbs/view.php?id=9295&amp;no=51)</itunes:subtitle>
+<enclosure url="http://air.worldost.com/9211/9211_02_first.mp3" length="969700" type="audio/mpeg" />
+<guid>http://air.worldost.com/9211/9211_02_first.mp3</guid>
+<pubDate>Mon, 2 Nov 1992 01:00:00 +0900</pubDate>
+<itunes:duration>1:00</itunes:duration>
+<itunes:keywords>정은임, 영화음악</itunes:keywords>
+<itunes:explicit>clean</itunes:explicit>
+</item>
+ 
+<item>
+<title>1992.11.04. 영화 속의 작은 실수들</title>
+<itunes:author>정은임</itunes:author>
+<itunes:subtitle>1992년 11월 4일 (수) (출처: 정은임 추모사업회 홈페이지. http://www.worldost.com/bbs/view.php?id=9295&amp;no=52)</itunes:subtitle>
+<enclosure url="http://air2.worldost.com/old/9211/9211_04.mp3" length="21622912" type="audio/mpeg" />
+<guid>http://air2.worldost.com/old/9211/9211_04.mp3</guid>
+<pubDate>Wed, 4 Nov 1992 01:00:00 +0900</pubDate>
+<itunes:duration>1:00:03</itunes:duration>
+<itunes:keywords>정은임, 영화음악</itunes:keywords>
+<itunes:explicit>clean</itunes:explicit>
+</item>
+ 
+<item>
+<title>1992.11.07. 숨어있는 좋은 영화 보기</title>
+<itunes:author>정은임</itunes:author>
+<itunes:subtitle>1992년 11월 7일 (토) (출처: 정은임 추모사업회 홈페이지. http://www.worldost.com/bbs/view.php?id=9295&amp;no=53)</itunes:subtitle>
+<enclosure url="http://air2.worldost.com/old/9211/9211_07.mp3" length="20543616" type="audio/mpeg" />
+<guid>http://air2.worldost.com/old/9211/9211_07.mp3</guid>
+<pubDate>Sat, 7 Nov 1992 01:00:00 +0900</pubDate>
+<itunes:duration>57:03</itunes:duration>
+<itunes:keywords>정은임, 영화음악</itunes:keywords>
+<itunes:explicit>clean</itunes:explicit>
+</item>
+ 
+</channel>
+</rss>

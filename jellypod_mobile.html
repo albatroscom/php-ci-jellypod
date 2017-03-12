@@ -1,0 +1,106 @@
+<html>
+<head>
+	<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width" /> <!-- 0924 수정 -->
+	<meta name="apple-mobile-web-app-capable" content="yes" /> <!-- 0924 수정 -->
+	<style>
+		html, body, div {margin:0; padding:0;}
+		body {overflow:hidden;} /* 0924 수정 */
+		img {border:0;}
+		.tutorialImage {width:100%;}
+	</style>
+	<script language="Javascript"> /* 0924 추가 */
+		function hideAddressBar(){
+			if(document.documentElement.scrollHeight<window.outerHeight/window.devicePixelRatio) 
+				document.documentElement.style.height=(window.outerHeight/window.devicePixelRatio)+'px'; 
+			setTimeout(window.scrollTo(1,1),0); 
+		} 
+		window.addEventListener("load",function(){hideAddressBar();}); 
+		window.addEventListener("orientationchange",hideAddressBar());
+	</script>
+	<script type="text/javascript" src="http://imgcdn.pandora.tv/jellypod/js/jquery-1.9.1.min.js?v001"></script>
+</head>
+ 
+<body>
+	<div>
+		<!-- <a href="Market://details?id=com.tv.pandora.xfile"> --><img id="event_img" src="http://imgcdn.pandora.tv/html5/joshua/reward/0924_PtvApp_jellypod.jpg" class="tutorialImage" usemap="#mmap"/><!-- </a> -->
+		<map name="mmap">
+  			<!-- area id="ar1" shape="rect" href="https://play.google.com/store/apps/details?id=tv.pandora.jellypod" / -->
+			<area id="ar1" shape="rect" href="javascript:appClick();" />
+  			<area id="ar2" shape="rect" href="javascript:webClick();" /><!--http://www.jellypod.com/?lot=pcv" /-->
+  		</map>
+	</div>
+	<div id="div_app" style="display:none"></div>
+	<iframe id="checkframe" src="about:_blank" name="checkframe" width="0" height="1"></iframe>
+	<script language="Javascript">
+	<!--
+		function imageMap(rimg,rwidth,x1,y1,x2,y2,mapid){
+		 var rxsize = document.getElementById(rimg).width;
+		 var xp1 = rxsize / rwidth * x1;
+		 var yp1 = rxsize / rwidth * y1;
+		 var xp2 = rxsize / rwidth * x2;
+		 var yp2 = rxsize / rwidth * y2;
+		 document.getElementById(mapid).coords = xp1+","+yp1+ ","+xp2+","+yp2;
+		}
+
+		function appClick() {
+//			document.getElementById("checkframe").location.href = "jellypod://main";
+//			document.getElementById("checkframe").setAttribute("src", "jellypod://main");
+//			document.getElementById("checkframe").setAttribute("src", "jellypod://main");
+
+			is_installed_app_and();
+			_gaq.push(['_trackEvent', 'click', 'app', 'appclick']);
+			return;
+			setTimeout(function (){checkApplicationInstall_callback()}, 2000);
+		}
+
+		function checkApplicationInstall_callback() {
+			try {
+				var sframe = document.getElementById('checkframe').contentWindow.document.body.innerHTML;
+			} catch (e) {
+				location.href='market://details?id=tv.pandora.jellypod';
+			}
+		}
+
+		function webClick() {
+			_gaq.push(['_trackEvent', 'click', 'web', 'webclick']);
+			location.href = 'http://www.jellypod.com/?lot=pcv';
+		}
+
+
+
+		function is_installed_app_and() {
+			var macketUrl = 'market://details?id=tv.pandora.jellypod';
+		//var macketUrl = 'market://details?id=[android_id]';     
+			install_and( macketUrl );
+		 
+			var url = "jellypod://main";
+			$("#div_app").html( "<iframe id='frm' src='" + url + "' width=0 height=0 frameborder=0></iframe>");
+			setTimeout(function () {
+				var div = $("#div_app");
+				var iframe = $("#frm");
+				if( iframe.length > 0)
+				{
+					iframe.remove();
+				}
+			}, 1000 );
+		}
+
+		function install_and( macketUrl ) {
+			var clickedAt = new Date();
+			setTimeout( function () {
+				if(new Date() - clickedAt < 1500)
+				{
+					location.href = macketUrl;
+				}
+			}, 500);
+		}
+
+		//원래 좌표위치
+		imageMap('event_img',720,55,66,659,914,'ar1'); /* 0924 수정 */
+		imageMap('event_img',720,178,928,543,1020,'ar2'); /* 0924 수정 */
+	//-->
+	</script>
+
+</body>
+<script type="text/javascript" name="makePCookie" id="makePCookie" src="http://imgcdn.pandora.tv/_ptv_all/util/makePCookie_jellypod_utf.js"></script>
+</html>

@@ -1,0 +1,64 @@
+<?
+	/************************************************************************************/
+	/* - 결과값 복호화를 위해 IV 값을 Random하게 생성함.(반드시 필요함!!)			    */
+	/* - input박스 reqNum의 value값을  $CurTime.$RandNo 형태로 지정					    */
+ 	/************************************************************************************/
+    $CurTime = date(YmdHis);  //현재 시각 구하기
+	$RandNo = rand(1000000000, 9999999999);
+
+	$id			= "PDV002";													// 회원사아이디
+	$srvNo		= "003001";														// 서비스번호
+	$reqNum		= $CurTime.$RandNo;												// 요청번호
+	$retUrl		= "23http://www.pandora.tv/sign/ipin/ipin_signup_return.ptv";	// 결과수신URL
+
+	if($_GET["mode"] == "info") $retUrl		= "23http://www.pandora.tv/sign/ipin/ipin_info_return.ptv";	// 결과수신URL 회원정보 수정으로
+
+	/************************************************************************************/
+	/* reqNum 값은 최종 결과값 복호화를 위한 SecuKey로 활용 되므로 중요합니다.			*/
+	/* reqNum 은 본인 확인 요청시 항상 새로운 값으로 중복 되지 않게 생성 해야 합니다.	*/
+	/* 쿠키 또는 Session및 기타 방법을 사용해서 reqNum 값을								*/
+	/* ipin_result_seed.php에서 가져 올 수 있도록 해야 함.								*/
+	/* 샘플을 위해서 쿠키를 사용한 것이므로 참고 하시길 바랍니다.						*/
+ 	/************************************************************************************/
+	//01. reqNum 쿠키 생성
+	setcookie("REQNUM", $reqNum, 0);
+
+	$exVar       = "0000000000000000";        // 확장임시 필드입니다. 수정하지 마세요..
+
+	//02. 암호화 파라미터 생성
+	$reqInfo = $reqNum . "/" . $id . "/" . $srvNo . "/" . $exVar;
+	
+	//03. 아이핀 요청정보 1차암호화
+	$secux = new COM("SCISecurity.SEED") or die ("can not create AIMS message object"); 
+	$iv = "";
+	$enc_str = $secux->SeedEncript($reqInfo,$iv);
+
+	//04. 요청정보 위변조검증값 생성
+	$hmac = new COM("SCISecurity.AES") or die ("can not create AIMS message object"); 
+	$hmac_str = $hmac->HMacReqEncript($enc_str);
+
+	//05. 요청정보 2차암호화
+	//데이터 생성 규칙 : "요청정보 1차 암호화/위변조검증값/암복화 확장 변수"
+	$enc_reqInfo = $enc_str. "/" .$hmac_str. "/" ."00000000";
+	$enc_reqInfo = $secux->SeedEncript($enc_reqInfo,$iv); 
+
+?>
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body bgcolor="#FFFFFF" topmargin=0 leftmargin=0 marginheight=0 marginwidth=0>
+<form name="reqCBAForm" method="post" action="">  
+    <input type="hidden" name="reqInfo" value="<? echo $enc_reqInfo ?>">
+    <input type="hidden" name="retUrl" value="<? echo $retUrl ?>">
+</form>
+<script language=javascript>  
+<!--
+	document.reqCBAForm.action = 'https://ipin.siren24.com/i-PIN/jsp/ipin_j10.jsp';
+	document.reqCBAForm.submit();
+//-->
+</script>
+</BODY>
+</HTML>

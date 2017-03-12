@@ -1,0 +1,94 @@
+<?
+	/************************************************************************************/
+	/* - sample 페이지에서 요청 시 쿠키에 저장한 Reqnum값을 가져와서 IV값에 셋팅   	    */
+	/* - 쿠키 만료시간 경과 후 결과처리 못함										    */
+ 	/************************************************************************************/
+	//01. 쿠키값 확인
+	if (isset($_COOKIE["REQNUM"])) {
+		$iv = $_COOKIE["REQNUM"]; 
+	} else {
+?>
+		<script language=javascript>
+			alert("세션이 만료되었습니다.!!");
+			self.close();
+		</script>
+<?
+		exit;
+	}
+
+	// 파라메터로 받은 요청결과
+	$enc_retInfo = $_GET["retInfo"];
+
+	//02. 요청결과 복호화
+	$secux = new COM("SCISecurity.SEED") or die ("can not create SEED message object"); 
+	$dec_retInfo = $secux->SeedDecript($enc_retInfo,$iv);
+
+	//데이터 조합 : "본인확인1차암호화값/위변조검증값/암복화확장변수"
+	$totInfo = split("/", $dec_retInfo);
+
+	$encPara  = $totInfo[0];		//암호화된 통합 파라미터
+	$encMsg   = $totInfo[1];		//암호화된 통합 파라미터의 Hash값
+
+	//03. 위변조검증값 생성
+	$hmac = new COM("SCISecurity.AES") or die ("can not create AES message object"); 
+	$hmac_str = $hmac->HMacEncript($encPara);
+
+	if($hmac_str != $encMsg){
+?>
+		<script language=javascript>
+			alert("비정상적인 접근입니다.!!");
+			self.close();
+		</script>
+<?
+		exit;
+	}
+
+	//04. 본인확인1차암호화값 복호화
+	$decPara = $secux->SeedDecript($encPara,$iv);
+
+	//05. 파라미터 분리
+	$split_dec_retInfo = split("/", iconv("CP949","UTF-8",$decPara));
+
+	$reqNum    = $split_dec_retInfo[0];   //요청번호
+	$vDiscrNo  = $split_dec_retInfo[1];   //아이핀번호
+	$name      = $split_dec_retInfo[2];   //성명
+	$result    = $split_dec_retInfo[3];   //인증결과
+	$age	   = $split_dec_retInfo[4];   //연령대
+	$sex       = $split_dec_retInfo[5];   //성별
+	$ip        = $split_dec_retInfo[6];   //Client IP
+	$cba       = $split_dec_retInfo[7];   //cba
+	$birth     = $split_dec_retInfo[8];   //생년월일
+	$fgn       = $split_dec_retInfo[9];   //내/외국인구분
+	$discrHash = $split_dec_retInfo[10];  //중복가입확인정보
+	$ciVersion = $split_dec_retInfo[11];  //연계정보 버젼
+	$ciscrHash = $split_dec_retInfo[12];  //연계정보
+
+	//05. 중복가입확인정보는 구분자인 "/"가 나올수 있으므로 한번더 복호화
+	if($discrHash) $discrHash = $secux->SeedDecript($discrHash,$iv);
+
+	//06. 연계정보는 구분자인 "/"가 나올수 있으므로 한번더 복호화
+	if($ciscrHash) $ciscrHash = $secux->SeedDecript($ciscrHash,$iv);
+?>
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body bgcolor="#FFFFFF" topmargin=0 leftmargin=0 marginheight=0 marginwidth=0>
+<script language=javascript>
+	//document.domain = "pandora.tv";
+
+	<?if($result == "1"){?>
+	opener.ipinWrite('<?=$name?>','<?=$birth?>','<?=$sex?>');
+	opener.document.sign_frm.ipin.value = "2";
+	opener.document.sign_frm.rname_name.value = "<?=$name?>";
+	opener.document.sign_frm.vDiscrNo.value = "<?=$vDiscrNo?>";
+	opener.document.sign_frm.discrHash.value = "<?=$discrHash?>";
+	opener.document.sign_frm.ciVersion.value = "<?=$ciVersion?>";
+	opener.document.sign_frm.ciscrHash.value = "<?=$ciscrHash?>";
+	<?}?>
+	self.close();
+</script>
+</BODY>
+</HTML>
